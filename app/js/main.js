@@ -9,7 +9,6 @@ class Main {
         // define dom Elements
         this.canvas = document.getElementById('canvas');
         this.context = canvas.getContext('2d');
-        this.header = document.getElementById('logo');
         this.lastName = document.getElementsByClassName('lastName');
         this.target = window;
 
@@ -35,7 +34,7 @@ class Main {
 
         // init
         this.init();
-        // this.events();
+        this.events();
 
     }
 
@@ -52,7 +51,7 @@ class Main {
         this.context.strokeStyle = '#ffffff';
         this.context.stroke();
 
-        this.HeaderAnimation = new HeaderAnimation();
+        this.headerAnimationClass = new HeaderAnimation();
 
         // Update Main Scene
         this.update();
@@ -76,33 +75,27 @@ class Main {
         this.mouse.y = clientY;
         
         // Update to random color on mouse move
-        const currentColor = background.pallete[Math.floor(Math.random()*background.pallete.length)];
-        background.colorUpdate.r = currentColor.r;
-        background.colorUpdate.g = currentColor.g;
-        background.colorUpdate.b = currentColor.b;
+        const currentColor = this.background.pallete[Math.floor(Math.random()*this.background.pallete.length)];
+        this.background.colorUpdate.r = currentColor.r;
+        this.background.colorUpdate.g = currentColor.g;
+        this.background.colorUpdate.b = currentColor.b;
         
         // Look at dom ID attrib to see whos being hovered
         this.cursor.cursorTarget = target.id;
 
         // Set new deg for title rotation on mouse move
-        this.HeaderAnimation.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
+        this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
     }
 
     cursorOut() {
-        this.HeaderAnimation.font.x = 0;
-        this.HeaderAnimation.font.y = 0;
+        this.headerAnimationClass.rotate(0, 0);
         this.cursor.cursorTarget = 'NotOnScreen'
     }
 
     update() {
 
         // Rotate Header based on deg from mouse move
-        var style = "translate(-50%, -50%) rotateX(" + this.HeaderAnimation.font.x + "deg) rotateY(" + this.HeaderAnimation.font.y + "deg)";
-        this.header.style.transform = style;
-        this.header.style.webkitTransform = style;
-        this.header.style.mozTransform = style;
-        this.header.style.msTransform = style;
-        this.header.style.oTransform = style;
+        this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
         
         this.background.color.r = Lerp(this.background.color.r, this.background.colorUpdate.r, 0.01);
         this.background.color.g = Lerp(this.background.color.g, this.background.colorUpdate.g, 0.01);
@@ -139,7 +132,7 @@ class Main {
             this.cursor.colorHover = {r: 133, g:30, b:62};
         }
         
-        this.target.requestAnimationFrame(this.update);
+        this.target.requestAnimationFrame(this.update.bind(this));
     }
 }
 

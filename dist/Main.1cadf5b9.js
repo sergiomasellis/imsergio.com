@@ -204,6 +204,7 @@ function () {
         y: -90
       }
     };
+    this.header = document.getElementById('logo');
   }
 
   _createClass(HeaderAnimation, [{
@@ -212,12 +213,18 @@ function () {
       this.font.y = this.calculateRotation(mouseX, 0, canvasWidth, -30, 30);
       this.font.x = this.calculateRotation(mouseY, 0, canvasHeight, -30, 30); // Rotate Header based on deg from mouse move
 
-      var style = "translate(-50%, -50%) rotateX(" + font.x + "deg) rotateY(" + font.y + "deg)";
-      header.style.transform = style;
-      header.style.webkitTransform = style;
-      header.style.mozTransform = style;
-      header.style.msTransform = style;
-      header.style.oTransform = style;
+      var style = "translate(-50%, -50%) rotateX(" + this.font.x + "deg) rotateY(" + this.font.y + "deg)";
+      this.header.style.transform = style;
+      this.header.style.webkitTransform = style;
+      this.header.style.mozTransform = style;
+      this.header.style.msTransform = style;
+      this.header.style.oTransform = style;
+    }
+  }, {
+    key: "rotate",
+    value: function rotate(x, y) {
+      this.font.x = x;
+      this.font.y = y;
     }
   }, {
     key: "calculateRotation",
@@ -270,7 +277,6 @@ function () {
     // define dom Elements
     this.canvas = document.getElementById('canvas');
     this.context = canvas.getContext('2d');
-    this.header = document.getElementById('logo');
     this.lastName = document.getElementsByClassName('lastName');
     this.target = window; // Mouse related properties
 
@@ -326,7 +332,8 @@ function () {
       }
     }; // init
 
-    this.init(); // this.events();
+    this.init();
+    this.events();
   }
 
   _createClass(Main, [{
@@ -341,7 +348,7 @@ function () {
       this.context.arc(this.cursor.x, this.cursor.y, this.cursor.width, 0, 2 * Math.PI);
       this.context.strokeStyle = '#ffffff';
       this.context.stroke();
-      this.HeaderAnimation = new _HeaderAnimation.default(); // Update Main Scene
+      this.headerAnimationClass = new _HeaderAnimation.default(); // Update Main Scene
 
       this.update();
     }
@@ -368,32 +375,26 @@ function () {
       this.mouse.x = clientX;
       this.mouse.y = clientY; // Update to random color on mouse move
 
-      var currentColor = background.pallete[Math.floor(Math.random() * background.pallete.length)];
-      background.colorUpdate.r = currentColor.r;
-      background.colorUpdate.g = currentColor.g;
-      background.colorUpdate.b = currentColor.b; // Look at dom ID attrib to see whos being hovered
+      var currentColor = this.background.pallete[Math.floor(Math.random() * this.background.pallete.length)];
+      this.background.colorUpdate.r = currentColor.r;
+      this.background.colorUpdate.g = currentColor.g;
+      this.background.colorUpdate.b = currentColor.b; // Look at dom ID attrib to see whos being hovered
 
       this.cursor.cursorTarget = target.id; // Set new deg for title rotation on mouse move
 
-      this.HeaderAnimation.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
+      this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
     }
   }, {
     key: "cursorOut",
     value: function cursorOut() {
-      this.HeaderAnimation.font.x = 0;
-      this.HeaderAnimation.font.y = 0;
+      this.headerAnimationClass.rotate(0, 0);
       this.cursor.cursorTarget = 'NotOnScreen';
     }
   }, {
     key: "update",
     value: function update() {
       // Rotate Header based on deg from mouse move
-      var style = "translate(-50%, -50%) rotateX(" + this.HeaderAnimation.font.x + "deg) rotateY(" + this.HeaderAnimation.font.y + "deg)";
-      this.header.style.transform = style;
-      this.header.style.webkitTransform = style;
-      this.header.style.mozTransform = style;
-      this.header.style.msTransform = style;
-      this.header.style.oTransform = style;
+      this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
       this.background.color.r = (0, _Utils.Lerp)(this.background.color.r, this.background.colorUpdate.r, 0.01);
       this.background.color.g = (0, _Utils.Lerp)(this.background.color.g, this.background.colorUpdate.g, 0.01);
       this.background.color.b = (0, _Utils.Lerp)(this.background.color.b, this.background.colorUpdate.b, 0.01);
@@ -430,7 +431,7 @@ function () {
         };
       }
 
-      this.target.requestAnimationFrame(this.update);
+      this.target.requestAnimationFrame(this.update.bind(this));
     }
   }]);
 
@@ -465,7 +466,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59696" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51653" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

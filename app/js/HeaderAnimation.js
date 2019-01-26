@@ -1,6 +1,7 @@
 class HeaderAnimation {
 
     constructor(){
+
         this.font = {
             x: 0,
             y: 0,
@@ -9,6 +10,8 @@ class HeaderAnimation {
                 y: -90
             }
         };
+
+        this.header = document.getElementById('logo');
     }
 
     update(mouseX, mouseY, canvasWidth, canvasHeight) {
@@ -16,12 +19,17 @@ class HeaderAnimation {
         this.font.x = this.calculateRotation(mouseY, 0, canvasHeight, -30, 30);
 
         // Rotate Header based on deg from mouse move
-        var style = "translate(-50%, -50%) rotateX(" + font.x + "deg) rotateY(" + font.y + "deg)";
-        header.style.transform = style;
-        header.style.webkitTransform = style;
-        header.style.mozTransform = style;
-        header.style.msTransform = style;
-        header.style.oTransform = style;
+        var style = "translate(-50%, -50%) rotateX(" + this.font.x + "deg) rotateY(" + this.font.y + "deg)";
+        this.header.style.transform = style;
+        this.header.style.webkitTransform = style;
+        this.header.style.mozTransform = style;
+        this.header.style.msTransform = style;
+        this.header.style.oTransform = style;
+    }
+
+    rotate(x, y) {
+        this.font.x = x;
+        this.font.y = y;
     }
 
     calculateRotation(x, in_min, in_max, out_min, out_max) {
