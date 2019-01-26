@@ -1,0 +1,22 @@
+{
+  "name": "im-sergio",
+  "version": "1.0.0",
+  "description": "Portfolio Website",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel app/index.html",
+    "build": "parcel build app/index.html"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "animejs": "^3.0.1",
+    "scss": "^0.2.4",
+    "susy": "^3.0.5"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.8",
+    "node-sass": "^4.11.0"
+  }
+}
