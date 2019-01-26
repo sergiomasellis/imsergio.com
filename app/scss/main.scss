@@ -4,8 +4,8 @@ canvas { display:block; } /* To remove the scrollbars */
 
 @font-face {
     font-family: phosphatesolid;
-    src: url('./phosphate-solid-02-webfont.woff2') format('woff2'),
-         url('./phosphate-solid-02-webfont.woff') format('woff');
+    src: url('../fonts/phosphate-solid-02-webfont.woff2') format('woff2'),
+         url('../fonts/phosphate-solid-02-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

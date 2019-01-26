@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  cursor: none; }
+
+/* to remove the top and left whitespace */
+html, body {
+  width: 100%;
+  height: 100%; }
+
+/* just to be sure these are full screen*/
+canvas {
+  display: block; }
+
+/* To remove the scrollbars */
+@font-face {
+  font-family: phosphatesolid;
+  src: url("phosphate-solid-02-webfont.7fd84bd5.woff2") format("woff2"), url("phosphate-solid-02-webfont.5fc7823e.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/*  MAIN CODE */
+body {
+  background: red; }
+
+#logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  perspective: 40px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s;
+  transform-style: preserve-3d; }
+
+.firstName, .lastName {
+  display: block;
+  text-align: center;
+  font-family: 'phosphatesolid', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  font-size: 8em;
+  padding: 0;
+  margin: 0;
+  line-height: 91px;
+  font-weight: normal;
+  perspective: 40px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0px 15px 5px rgba(0, 0, 0, 0.1), 10px 20px 5px rgba(0, 0, 0, 0.05), -10px 20px 5px rgba(0, 0, 0, 0.05); }
+
+.firstName {
+  transform: translateZ(30px) scale(0.64); }
+
+.lastName {
+  transform: translateZ(-30px) scale(6);
+  /* position: relative; */
+  /* top: -20px; */
+  color: #851e3e; }
+
+/* video */
+.videoContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+iframe {
+  /* optional */
+  width: 100%;
+  height: 100%;
+  pointer-events: none; }
