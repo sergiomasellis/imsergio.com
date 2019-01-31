@@ -251,12 +251,134 @@ var Lerp = function Lerp(a, b, t) {
 };
 
 exports.Lerp = Lerp;
-},{}],"js/Main.js":[function(require,module,exports) {
+},{}],"js/CursorAnimation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Utils = require("./Utils");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CursorAnimation =
+/*#__PURE__*/
+function () {
+  function CursorAnimation() {
+    _classCallCheck(this, CursorAnimation);
+
+    this.cursor = {
+      x: 0,
+      y: 0,
+      width: 20,
+      widthHover: 0,
+      scale: 1,
+      scaleHover: 1.5,
+      color: {
+        r: 0,
+        g: 0,
+        b: 0
+      },
+      colorHover: {
+        r: 133,
+        g: 30,
+        b: 62
+      },
+      colorBg: {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 1
+      },
+      colorBgHover: {
+        r: 133,
+        g: 30,
+        b: 62,
+        a: 1
+      },
+      target: 'canvas',
+      element: document.getElementsByClassName('cursor')[0]
+    };
+  }
+
+  _createClass(CursorAnimation, [{
+    key: "update",
+    value: function update(mouseX, mouseY) {
+      this.cursor.x = (0, _Utils.Lerp)(this.cursor.x, mouseX, 0.05);
+      this.cursor.y = (0, _Utils.Lerp)(this.cursor.y, mouseY, 0.07);
+      this.cursor.scale = (0, _Utils.Lerp)(this.cursor.scale, this.cursor.scaleHover, 0.1);
+      this.cursor.color.r = (0, _Utils.Lerp)(this.cursor.color.r, this.cursor.colorHover.r, 0.1);
+      this.cursor.color.g = (0, _Utils.Lerp)(this.cursor.color.g, this.cursor.colorHover.g, 0.1);
+      this.cursor.color.b = (0, _Utils.Lerp)(this.cursor.color.b, this.cursor.colorHover.b, 0.1);
+      this.cursor.colorBg.r = (0, _Utils.Lerp)(this.cursor.colorBg.r, this.cursor.colorBgHover.r, 0.1);
+      this.cursor.colorBg.g = (0, _Utils.Lerp)(this.cursor.colorBg.g, this.cursor.colorBgHover.g, 0.1);
+      this.cursor.colorBg.b = (0, _Utils.Lerp)(this.cursor.colorBg.b, this.cursor.colorBgHover.b, 0.1);
+      this.cursor.colorBg.a = (0, _Utils.Lerp)(this.cursor.colorBg.a, this.cursor.colorBgHover.a, 0.1);
+      this.cursor.element.style.borderColor = "rgb(".concat(this.cursor.color.r, ", ").concat(this.cursor.color.g, ", ").concat(this.cursor.color.b);
+      this.cursor.element.style.backgroundColor = "rgba(".concat(this.cursor.colorBg.r, ", ").concat(this.cursor.colorBg.g, ", ").concat(this.cursor.colorBg.b, ", ").concat(this.cursor.colorBg.a, ")");
+      var stylePosition = "translate(".concat(Math.floor(this.cursor.x), "px, ").concat(Math.floor(this.cursor.y), "px) scale(").concat(this.cursor.scale, ")");
+      this.cursor.element.style.transform = stylePosition;
+      this.cursor.element.style.webkitTransform = stylePosition;
+      this.cursor.element.style.mozTransform = stylePosition;
+      this.cursor.element.style.msTransform = stylePosition;
+      this.cursor.element.style.oTransform = stylePosition; // cursor.x > canvas.width/2
+
+      if (this.cursor.target == 'NotOnScreen') {
+        this.cursor.scaleHover = 0;
+      } else if (this.cursor.target != 'canvas') {
+        this.cursor.scaleHover = 1.2;
+        this.cursor.colorHover = {
+          r: 133,
+          g: 30,
+          b: 62
+        };
+        this.cursor.colorBgHover = {
+          r: 255,
+          g: 255,
+          b: 255,
+          a: 0.2
+        };
+      } else {
+        this.cursor.scaleHover = 0.2;
+        this.cursor.colorHover = {
+          r: 255,
+          g: 255,
+          b: 255
+        };
+        this.cursor.colorBgHover = {
+          r: 255,
+          g: 255,
+          b: 255
+        };
+        this.cursor.colorBgHover = {
+          r: 255,
+          g: 255,
+          b: 255,
+          a: 1
+        };
+      }
+    }
+  }]);
+
+  return CursorAnimation;
+}();
+
+var _default = CursorAnimation;
+exports.default = _default;
+},{"./Utils":"js/Utils.js"}],"js/Main.js":[function(require,module,exports) {
 "use strict";
 
 require("../scss/main.scss");
 
 var _HeaderAnimation = _interopRequireDefault(require("./HeaderAnimation"));
+
+var _CursorAnimation = _interopRequireDefault(require("./CursorAnimation"));
 
 var _Utils = require("./Utils");
 
@@ -283,23 +405,6 @@ function () {
     this.mouse = {
       x: 0,
       y: 0
-    };
-    this.cursor = {
-      x: this.canvas.width / 2,
-      y: this.canvas.height / 2,
-      width: 20,
-      widthHover: 0,
-      color: {
-        r: 0,
-        g: 0,
-        b: 0
-      },
-      colorHover: {
-        r: 133,
-        g: 30,
-        b: 62
-      },
-      cursorTarget: 'canvas'
     }; // Home Page background
 
     this.background = {
@@ -340,15 +445,17 @@ function () {
     key: "init",
     value: function init() {
       // Don't be rude say hi!
-      console.log('Welcome to Imsergio.com'); // Setup default background color
+      console.log('Welcome to Imsergio.com'); // Setup Canvas Default Size
+
+      this.canvas.width = this.target.innerWidth;
+      this.canvas.height = this.target.innerHeight; // Setup default background color
 
       this.context.fillStyle = 'rgb(' + this.background.color.r + ',' + this.background.color.g + ',' + this.background.color.b + ')';
-      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      this.context.beginPath();
-      this.context.arc(this.cursor.x, this.cursor.y, this.cursor.width, 0, 2 * Math.PI);
-      this.context.strokeStyle = '#ffffff';
-      this.context.stroke();
-      this.headerAnimationClass = new _HeaderAnimation.default(); // Update Main Scene
+      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height); // Logo
+
+      this.headerAnimationClass = new _HeaderAnimation.default(); // Cursor
+
+      this.cursorAnimationClass = new _CursorAnimation.default(); // Update Main Scene
 
       this.update();
     }
@@ -380,15 +487,16 @@ function () {
       this.background.colorUpdate.g = currentColor.g;
       this.background.colorUpdate.b = currentColor.b; // Look at dom ID attrib to see whos being hovered
 
-      this.cursor.cursorTarget = target.id; // Set new deg for title rotation on mouse move
+      this.cursorAnimationClass.cursor.target = target.className; // Set new deg for title rotation on mouse move
 
       this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
+      this.cursorAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
     }
   }, {
     key: "cursorOut",
     value: function cursorOut() {
       this.headerAnimationClass.rotate(0, 0);
-      this.cursor.cursorTarget = 'NotOnScreen';
+      this.cursorAnimationClass.cursor.target = 'NotOnScreen';
     }
   }, {
     key: "update",
@@ -400,37 +508,7 @@ function () {
       this.background.color.b = (0, _Utils.Lerp)(this.background.color.b, this.background.colorUpdate.b, 0.01);
       this.context.fillStyle = 'rgb(' + this.background.color.r + ',' + this.background.color.g + ',' + this.background.color.b + ')';
       this.context.fillRect(0, 0, canvas.width, canvas.height);
-      this.context.beginPath();
-      this.cursor.x = (0, _Utils.Lerp)(this.cursor.x, this.mouse.x, 0.05);
-      this.cursor.y = (0, _Utils.Lerp)(this.cursor.y, this.mouse.y, 0.07);
-      this.cursor.width = (0, _Utils.Lerp)(this.cursor.width, this.cursor.widthHover, 0.1);
-      this.cursor.color.r = (0, _Utils.Lerp)(this.cursor.color.r, this.cursor.colorHover.r, 0.1);
-      this.cursor.color.g = (0, _Utils.Lerp)(this.cursor.color.g, this.cursor.colorHover.g, 0.1);
-      this.cursor.color.b = (0, _Utils.Lerp)(this.cursor.color.b, this.cursor.colorHover.b, 0.1);
-      this.context.arc(this.cursor.x, this.cursor.y, this.cursor.width, 0, 2 * Math.PI);
-      this.context.strokeStyle = 'rgb(' + this.cursor.color.r + ',' + this.cursor.color.g + ',' + this.cursor.color.b + ')'; // this.context.fillStyle = 'rgb('+ this.cursor.color.r +','+ this.cursor.color.g +','+ this.cursor.color.b +')';
-      // this.context.fill();
-
-      this.context.stroke(); // cursor.x > canvas.width/2
-
-      if (this.cursor.cursorTarget == 'NotOnScreen') {
-        this.cursor.widthHover = 0;
-      } else if (this.cursor.cursorTarget != 'canvas') {
-        this.cursor.widthHover = 50;
-        this.cursor.colorHover = {
-          r: 255,
-          g: 255,
-          b: 255
-        };
-      } else {
-        this.cursor.widthHover = 20;
-        this.cursor.colorHover = {
-          r: 133,
-          g: 30,
-          b: 62
-        };
-      }
-
+      this.cursorAnimationClass.update(this.mouse.x, this.mouse.y);
       this.target.requestAnimationFrame(this.update.bind(this));
     }
   }]);
@@ -439,7 +517,7 @@ function () {
 }();
 
 window.imsergio = new Main();
-},{"../scss/main.scss":"scss/main.scss","./HeaderAnimation":"js/HeaderAnimation.js","./Utils":"js/Utils.js"}],"../../../../AppData/Roaming/nvm/v10.11.0/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../scss/main.scss":"scss/main.scss","./HeaderAnimation":"js/HeaderAnimation.js","./CursorAnimation":"js/CursorAnimation.js","./Utils":"js/Utils.js"}],"../../../../AppData/Roaming/nvm/v10.11.0/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -466,7 +544,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60516" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
