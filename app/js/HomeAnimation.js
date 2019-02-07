@@ -1,15 +1,11 @@
-
-import { Lerp } from "./Utils";
-
-
 class HomeAnimation {
     constructor() {
 
         // Home Page background
         this.background = {
-            pallete: [{r: 5, g:30, b:62}, {r: 37, g:30, b:62}, {r: 69, g:30, b:62}, {r: 101, g:30, b:62}], 
-            color: {r:  Math.floor(Math.random() * 256), g: Math.floor(Math.random() * 256), b: Math.floor(Math.random() * 256)}, 
-            colorUpdate: {r:  Math.floor(Math.random() * 256), g: Math.floor(Math.random() * 256), b: Math.floor(Math.random() * 256)}
+            pallete: [{r: 74, g:72, b:67}, {r: 113, g:106, b:77}, {r: 24, g:74, b:69}], 
+            color: {r: 43, g:0, b:89},
+            colorUpdate: {r:  0, g: 0, b: 0}
         };
     }
 
@@ -30,9 +26,9 @@ class HomeAnimation {
 
     draw(canvas, context) {
         
-        this.background.color.r = Lerp(this.background.color.r, this.background.colorUpdate.r, 0.01);
-        this.background.color.g = Lerp(this.background.color.g, this.background.colorUpdate.g, 0.01);
-        this.background.color.b = Lerp(this.background.color.b, this.background.colorUpdate.b, 0.01);
+        // this.background.color.r = Lerp(this.background.color.r, this.background.colorUpdate.r, 0.01);
+        // this.background.color.g = Lerp(this.background.color.g, this.background.colorUpdate.g, 0.01);
+        // this.background.color.b = Lerp(this.background.color.b, this.background.colorUpdate.b, 0.01);
         
         context.fillStyle = 'rgb('+ this.background.color.r +','+ this.background.color.g +','+ this.background.color.b +')';
         context.fillRect(0, 0, canvas.width, canvas.height);

@@ -3,6 +3,7 @@ import HeaderAnimation from "./HeaderAnimation";
 import CursorAnimation from "./CursorAnimation";
 // import Loading from "./LoadingIntro";
 import HomeAnimation from "./HomeAnimation";
+import LoaderAnimation from './LoaderAnimation';
 
 
 class Main {
@@ -14,7 +15,7 @@ class Main {
         this.target = window;
 
         // Mouse related properties
-        this.mouse = {x: 0, y: 0};
+        this.mouse = {x: this.canvas.width/2, y: this.canvas.height/2};
 
         // init
         this.init();
@@ -28,15 +29,18 @@ class Main {
         // Setup Canvas Default Size
         this.canvas.width = this.target.innerWidth;
         this.canvas.height = this.target.innerHeight;
-
+        
+        // Loader
+        this.loaderAnimationClass = new LoaderAnimation();
+        
         // Background
-        this.homeAnimationClass = new HomeAnimation();
+        // this.homeAnimationClass = new HomeAnimation();
 
         // Logo
         this.headerAnimationClass = new HeaderAnimation();
 
         // Cursor
-        this.cursorAnimationClass = new CursorAnimation();
+        this.cursorAnimationClass = new CursorAnimation(this.canvas.width/2, this.canvas.height/2);
 
         // Update Main Scene
         this.update();
@@ -61,7 +65,7 @@ class Main {
         
         
         // Update to random color on mouse move
-        this.homeAnimationClass.update();
+        // this.homeAnimationClass.update();
 
         
         // Look at dom ID attrib to see whos being hovered
@@ -78,12 +82,15 @@ class Main {
     }
 
     update() {
+        
+        // update loader position
+        this.loaderAnimationClass.update(this.mouse.x, this.mouse.y);
 
         // Rotate Header based on deg from mouse move
         this.headerAnimationClass.update(this.mouse.x, this.mouse.y, this.canvas.width, this.canvas.height);
 
         // draw changes to BG
-        this.homeAnimationClass.draw(this.canvas, this.context);
+        // this.homeAnimationClass.draw(this.canvas, this.context);
 
         // Cursor animation raf
         this.cursorAnimationClass.update(this.mouse.x, this.mouse.y);

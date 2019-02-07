@@ -8,10 +8,23 @@ class HeaderAnimation {
             origin: {
                 x: -90,
                 y: -90
-            }
+            },
+            hello: ['Hello', 'Hola', 'Bonjour', '&#20320;&#22909;', 'Hallo', 'Moi', 'Aluu', '&#12371;&#12435;&#12395;&#12385;&#12399;', 'Olá', 'Živijo', 'Chào', 'Buon giorno']
         };
 
         this.header = document.getElementById('logo');
+        this.firstName = document.getElementsByClassName('welcome__firstName')[0];
+        this.lastName = document.getElementsByClassName('welcome__lastName')[0];
+        
+        this.changeText = false;
+        
+        setTimeout(() => {
+            this.changeText = true;
+            // this.lastName.textContent = "H";
+            setInterval(() => {
+                this.firstName.innerHTML = this.font.hello[Math.floor(Math.random() * this.font.hello.length)];
+            }, 1500);
+        }, 15000);
     }
 
     update(mouseX, mouseY, canvasWidth, canvasHeight) {
@@ -25,6 +38,13 @@ class HeaderAnimation {
         this.header.style.mozTransform = style;
         this.header.style.msTransform = style;
         this.header.style.oTransform = style;
+        
+        // if(this.changeText){
+         
+        //     setInterval(() => {
+                
+        //     }, interval);
+        // }        
     }
 
     rotate(x, y) {
