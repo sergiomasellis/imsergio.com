@@ -59,6 +59,7 @@ class Main {
         this.mouse.x = clientX;
         this.mouse.y = clientY;
         
+        
         // Update to random color on mouse move
         this.homeAnimationClass.update();
 
