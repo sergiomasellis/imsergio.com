@@ -3,9 +3,13 @@ html, body { width:100%; height:100%; overflow: hidden; } /* just to be sure the
 canvas { display:block; } /* To remove the scrollbars */
 
 @font-face {
-    font-family: phosphatesolid;
-    src: url('../fonts/phosphate-solid-02-webfont.woff2') format('woff2'),
-         url('../fonts/phosphate-solid-02-webfont.woff') format('woff');
+    font-family: 'phosphatesolid';
+    src: url('../fonts/phosphate-webfont.eot');
+    src: url('../fonts/phosphate-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/phosphate-webfont.woff2') format('woff2'),
+         url('../fonts/phosphate-webfont.woff') format('woff'),
+         url('../fonts/phosphate-webfont.ttf') format('truetype'),
+         url('../fonts/phosphate-webfont.svg#phosphatesolid') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -14,6 +18,8 @@ canvas { display:block; } /* To remove the scrollbars */
 body {
     background: #2B0059;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #logo {
@@ -54,14 +60,12 @@ body {
     text-align: center;
     font-family: 'phosphatesolid', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
-    font-size: 7em;
+    font-size: 10em;
     padding: 0;
     margin: 0;
     line-height: 91px;
     font-weight: normal;
     perspective: 40px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     // text-shadow: 0px 15px 5px rgba(0,0,0,0.1), 10px 20px 5px rgba(0,0,0,0.05), -10px 20px 5px rgba(0,0,0,0.05);
 }
 
@@ -88,12 +92,12 @@ body {
 }
 
 .welcome__firstName {
-    transform: translateZ(30px) scale(0.640);
+    transform: translateZ(10px);
     color: rgb(12, 233, 193);
 }
 
 .welcome__lastName {
-    transform: translateZ(-30px) scale(6);
+    // transform: translateZ(-30px);
 }
 
 /* video */
