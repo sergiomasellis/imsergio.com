@@ -9,7 +9,7 @@ class HeaderAnimation {
                 x: -90,
                 y: -90
             },
-            hello: ['Hello', 'Hola', 'Bonjour', '&#20320;&#22909;', 'Hallo', 'Moi', 'Aluu', '&#12371;&#12435;&#12395;&#12385;&#12399;', 'Olá', 'Živijo', 'Chào', 'Buon giorno']
+            hello: ['Hello', 'Hola', 'Bonjour', '&#20320;&#22909;', 'Hallo', 'Moi', 'Aluu', '&#12371;&#12435;&#12395;&#12385;&#12399;', 'Olá', 'Chào', 'Buon giorno']
         };
 
         this.header = document.getElementById('logo');

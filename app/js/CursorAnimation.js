@@ -18,7 +18,6 @@ class CursorAnimation {
     }
     
     update(mouseX, mouseY) {
-        // console.log(mouseX, mouseY);
 
         this.cursor.x = Lerp(this.cursor.x, mouseX, 0.05);
         this.cursor.y = Lerp(this.cursor.y, mouseY, 0.07);
@@ -60,6 +59,7 @@ class CursorAnimation {
         // cursor.x > canvas.width/2
         if(this.cursor.target == 'NotOnScreen') {
             this.cursor.scale.hover = 0;
+            this.cursor.bg.hover = {r: 255, g:255, b:255, a:0};
         } else if(this.cursor.target != 'canvas') {
             this.cursor.scale.hover = 1;
             this.cursor.color.hover = {r: 0, g:30, b:62, a:0};

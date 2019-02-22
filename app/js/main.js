@@ -17,7 +17,10 @@ class Main {
         // Mouse related properties
         this.mouse = {x: this.canvas.width/2, y: this.canvas.height/2};
 
-        // init
+        // Don't Show Cursor
+        this.showCursor = false;
+
+        // Init
         this.init();
         this.events();
     }

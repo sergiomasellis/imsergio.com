@@ -29,7 +29,7 @@ class LoaderAnimation {
             this.rotateAmount.default = Lerp(this.rotateAmount.default, this.rotateAmount.next, '0.1');
             this.gradientAmount.default = Lerp(this.gradientAmount.default, this.gradientAmount.next, '0.1');
             
-            const stylePosition = `translate(${Math.floor(mouseX - 50)}px, ${Math.floor(mouseY - 25)}px) rotate(${this.rotateAmount.default}deg)`;
+            const stylePosition = `translate(46vw, 49vh) rotate(${this.rotateAmount.default-1}deg)`;
             this.loader.style.transform = stylePosition;
             this.loader.style.webkitTransform = stylePosition;
             this.loader.style.mozTransform = stylePosition;
