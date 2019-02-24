@@ -161,4 +161,21 @@ iframe {
 
 
   
-  
+.navigation {
+    position: absolute;
+    
+    top: 40px; right: 40px;
+    // z-index: 9999;
+    li {
+        float: left;
+        list-style: none;
+        a {
+            color: white;
+            text-decoration: none;
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 16px;
+            margin-right: 16px;
+        }
+    }
+
+}

@@ -40,7 +40,7 @@ class LoaderAnimation {
         } else if(this.loaded && !this.loaderAnimationComplete) {
             // this.loader.classList.add('fadeout');
             this.loader.style.transition = '0.5s transform ease-in';
-            const stylePosition = `translate(0px, 0px) scale(0.5)`;
+            const stylePosition = `translate(0px, 0px) scale(0.3)`;
             this.loader.style.transform = stylePosition;
             this.loader.style.webkitTransform = stylePosition;
             this.loader.style.mozTransform = stylePosition;
