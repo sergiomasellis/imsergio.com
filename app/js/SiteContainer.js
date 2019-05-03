@@ -9,23 +9,21 @@ import CursorAnimation from "./CursorAnimation";
 import HomeAnimation from "./HomeAnimation";
 import LoaderAnimation from './LoaderAnimation';
 import CanvasComponent from './CanvasComponent';
+import NavigationComponent from './NavigationComponent';
 
 
 class SiteContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            showMenu: false
-        };
-
-        this.toggleNavigation = this.toggleNavigation.bind(this);
+        this.state = {};
     }
 
     render() {
         return  <div> 
 
             <CanvasComponent></CanvasComponent>
+            
 
             
             <div id="logo" className="welcome not-loaded">
@@ -39,26 +37,12 @@ class SiteContainer extends React.Component {
             </div>
             
             <div className="cursor">
-            <div className="cursor__outer"></div>
-            <div className="cursor__inner"></div>
+                <div className="cursor__outer"></div>
+                <div className="cursor__inner"></div>
             </div>
 
-
-            <nav className="navigation" onClick={this.toggleNavigation}>
-               <div className="navigation__top"></div>
-               <div className="navigation__mid"></div>
-               <div className="navigation__bottom"></div>
-            </nav>
-
-            <div className={`navigation-modal ${(this.state.showMenu) ? '':'hide'}`}>
-                <nav>
-                    <ul>
-                        <li><a href="#resume">Resume</a></li>
-                        <li><a href="#work">Work</a></li>
-                        <li><a href="#work">Contact</a></li>
-                    </ul> 
-                </nav>
-            </div>
+            <NavigationComponent></NavigationComponent>
+            
         </div>;
     }
     
@@ -81,10 +65,6 @@ class SiteContainer extends React.Component {
         // // Init
         this.init();
         this.events();
-    }
-
-    toggleNavigation() {
-        this.setState({showMenu: !this.state.showMenu})
     }
 
     init() {
