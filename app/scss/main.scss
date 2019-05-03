@@ -69,6 +69,7 @@ ul {
     font-style: normal;
 }
 
+
 /*  MAIN CODE */
 body {
     background: var(--color-primary);
@@ -325,13 +326,14 @@ iframe {
                 a {
                     position: relative;
                     text-transform: uppercase;
-                    font-family: 'Segoe UI';
+                    font-family: 'Raleway', sans-serif;
                     font-weight: 800;
                     font-size: 8em;
+                    line-height: 2em;
                     border-bottom: 30px solid rgba(0, 0, 0, 0);
 
                     &.active {
-                        color: var(--color-primaryDark);
+                        color: var(--color-accent);
                     }
 
                     &:hover:after {
@@ -340,14 +342,13 @@ iframe {
 
                     &:hover:before {
                         right: -30px;
-
                     }
 
                     &:before {
                         display: block;
                         position: absolute;
                         content: "";
-                        top: 65px;
+                        top: 45px;
                         right: 105%;
                         width: 0;
                         height: 0;
@@ -361,7 +362,7 @@ iframe {
                         display: block;
                         content: "";
                         position: absolute;
-                        top: 80px;
+                        top: 60px;
                         left: -10%;
                         width: 0;
                         transition: all 300ms ease-in-out;
