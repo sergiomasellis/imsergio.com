@@ -15,7 +15,11 @@ class SiteContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            showMenu: false
+        };
+
+        this.toggleNavigation = this.toggleNavigation.bind(this);
     }
 
     render() {
@@ -38,14 +42,23 @@ class SiteContainer extends React.Component {
             <div className="cursor__outer"></div>
             <div className="cursor__inner"></div>
             </div>
-            
-            <nav className="navigation">
-            <ul>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#work">Contact</a></li>
-            </ul>
+
+
+            <nav className="navigation" onClick={this.toggleNavigation}>
+               <div className="navigation__top"></div>
+               <div className="navigation__mid"></div>
+               <div className="navigation__bottom"></div>
             </nav>
+
+            <div className={`navigation-modal ${(this.state.showMenu) ? '':'hide'}`}>
+                <nav>
+                    <ul>
+                        <li><a href="#resume">Resume</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#work">Contact</a></li>
+                    </ul> 
+                </nav>
+            </div>
         </div>;
     }
     
@@ -68,6 +81,10 @@ class SiteContainer extends React.Component {
         // // Init
         this.init();
         this.events();
+    }
+
+    toggleNavigation() {
+        this.setState({showMenu: !this.state.showMenu})
     }
 
     init() {

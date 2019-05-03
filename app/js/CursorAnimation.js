@@ -57,13 +57,14 @@ class CursorAnimation {
         this.cursor.elementOuter.style.oTransform = stylePosition2;
         
         // cursor.x > canvas.width/2
+        // console.log(this.cursor.target)
         if(this.cursor.target == 'NotOnScreen') {
             this.cursor.scale.hover = 0.1;
             this.cursor.bg.hover = {r: 255, g:255, b:255, a:0};
-        } else if(this.cursor.target != 'canvas') {
+        } else if(this.cursor.target != 'canvas' && this.cursor.target != 'navigation-modal') {
             this.cursor.scale.hover = 1;
             this.cursor.color.hover = {r: 0, g:30, b:62, a:0};
-            this.cursor.bg.hover = {r: 0, g:255, b:255, a:0};
+            this.cursor.bg.hover = {r: 0, g:255, b:255, a:1};
             this.cursor.outerBg.hover = {r: 12, g:233, b:193, a:0.99};
         } else {
             this.cursor.scale.hover = 0.1;
