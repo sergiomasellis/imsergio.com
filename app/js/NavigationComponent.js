@@ -3,15 +3,29 @@ import React from 'react';
 class NavigationComponent extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            showMenu: false
+            showMenu: false,
+            currentPage: 'home'
         };
 
         this.toggleNavigation = this.toggleNavigation.bind(this);
+        this.goToPage = this.goToPage.bind(this);
     }
     
     toggleNavigation() {
         this.setState({showMenu: !this.state.showMenu})
+    }
+
+    goToPage(page){
+        // hide modal
+        this.toggleNavigation();
+
+        // show page
+        this.setState({currentPage: page});
+
+        // Send page data to parent component
+        this.props.onPageChange(page);
     }
 
     render() {
@@ -26,9 +40,10 @@ class NavigationComponent extends React.Component {
                 <div className={`navigation-modal ${(this.state.showMenu) ? '':'hide'}`}>
                     <nav>
                         <ul>
-                            <li><a href="#resume">Resume</a></li>
-                            <li><a href="#work">Work</a></li>
-                            <li><a href="#work">Contact</a></li>
+                            <li><a href="#home" onClick={() => this.goToPage('home')} className={(this.state.currentPage == 'home') ? 'active':''}>Home</a></li>
+                            <li><a href="#resume" onClick={() => this.goToPage('resume')} className={(this.state.currentPage == 'resume') ? 'active':''}>Resume</a></li>
+                            <li><a href="#work" onClick={() => this.goToPage('work')} className={(this.state.currentPage == 'work') ? 'active':''}>Work</a></li>
+                            <li><a href="#contact" onClick={() => this.goToPage('contact')} className={(this.state.currentPage == 'contact') ? 'active':''}>Contact</a></li>
                         </ul> 
                     </nav>
                 </div>

@@ -330,6 +330,10 @@ iframe {
                     font-size: 8em;
                     border-bottom: 30px solid rgba(0, 0, 0, 0);
 
+                    &.active {
+                        color: var(--color-primaryDark);
+                    }
+
                     &:hover:after {
                         width: 110%;
                     }

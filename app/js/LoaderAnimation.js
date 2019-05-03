@@ -54,6 +54,7 @@ class LoaderAnimation {
             this.loader.style.oTransform = stylePosition;
             this.loaderAnimationComplete = true;
             
+            // CHANGE THIS TO A REACT COMPONENT SO I CAN PASS LOADED STATE TO PARENT
             this.welcome.classList.remove('not-loaded');
             this.welcome.classList.add('loaded');
         }

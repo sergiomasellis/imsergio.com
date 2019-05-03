@@ -16,7 +16,12 @@ class SiteContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            currentPage: 'home',
+            homeLoaded: false
+        };
+
+        this.navigateToPage = this.navigateToPage.bind(this);
     }
 
     render() {
@@ -26,10 +31,12 @@ class SiteContainer extends React.Component {
             
 
             
-            <div id="logo" className="welcome not-loaded">
+            <div id="logo" className={`welcome ${(this.state.homeLoaded) ? 'loaded' : 'not-loaded'} ${(this.state.currentPage == 'home') ? 'show':'hide'}`}>
                 <span className="welcome__firstName example-one">Hello</span>
                 <span className="welcome__lastName">Im Sergio</span>
             </div>
+
+            { this.state.currentPage === 'home' ? (<h1>Resume</h1>):('')}
             
             
             <div className="loader">
@@ -41,9 +48,14 @@ class SiteContainer extends React.Component {
                 <div className="cursor__inner"></div>
             </div>
 
-            <NavigationComponent></NavigationComponent>
+            <NavigationComponent onPageChange={this.navigateToPage}></NavigationComponent>
             
         </div>;
+    }
+
+    navigateToPage(page){
+        console.log('outside', page);
+        this.setState({currentPage: page});
     }
     
     componentDidMount() {
