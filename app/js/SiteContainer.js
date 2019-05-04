@@ -3,11 +3,11 @@ import '../scss/main.scss';
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 
-import HeaderAnimation from "./HeaderAnimation";
+import HomeComponent from "./HomeComponent";
 import CursorAnimation from "./CursorAnimation";
 // import Loading from "./LoadingIntro";
-import HomeAnimation from "./HomeAnimation";
-import LoaderAnimation from './LoaderAnimation';
+import BackgroundComponent from "./BackgroundComponent";
+import LoaderComponent from './LoaderComponent';
 import CanvasComponent from './CanvasComponent';
 import NavigationComponent from './NavigationComponent';
 
@@ -18,44 +18,60 @@ class SiteContainer extends React.Component {
         super(props);
         this.state = {
             currentPage: 'home',
-            homeLoaded: false
+            mouse: {
+                x: 0,
+                y: 0
+            },
+            loaded: false
         };
 
         this.navigateToPage = this.navigateToPage.bind(this);
+        this.siteLoaded = this.siteLoaded.bind(this);
     }
 
     render() {
-        return  <div> 
+        return  (
+        <div> 
 
             <CanvasComponent></CanvasComponent>
+
+            <HomeComponent 
+                loaded={this.state.loaded && this.state.currentPage === 'home'} 
+                onSetUpdate={home => this.updateHomeComponent = home}
+            ></HomeComponent>
+
+            <LoaderComponent 
+                onLoaded={this.siteLoaded} 
+                onSetUpdate={loader => this.updateLoaderComponent = loader}
+            ></LoaderComponent>
+
+
+            <NavigationComponent onPageChange={this.navigateToPage}></NavigationComponent>
+
+
+            {/* <BackgroundComponent currentPage={this.state.currentPage}></BackgroundComponent> */}
+            {/* { this.state.currentPage === 'home' ? (<h1>Resume</h1>):('')} */}
+            
             
 
-            
-            <div id="logo" className={`welcome ${(this.state.homeLoaded) ? 'loaded' : 'not-loaded'} ${(this.state.currentPage == 'home') ? 'show':'hide'}`}>
-                <span className="welcome__firstName example-one">Hello</span>
-                <span className="welcome__lastName">Im Sergio</span>
-            </div>
-
-            { this.state.currentPage === 'home' ? (<h1>Resume</h1>):('')}
-            
-            
-            <div className="loader">
-                <span className="loader__text">SM</span>
-            </div>
             
             <div className="cursor">
                 <div className="cursor__outer"></div>
                 <div className="cursor__inner"></div>
             </div>
 
-            <NavigationComponent onPageChange={this.navigateToPage}></NavigationComponent>
             
-        </div>;
+            
+        </div>);
     }
 
     navigateToPage(page){
         console.log('outside', page);
         this.setState({currentPage: page});
+    }
+
+    siteLoaded() {
+        this.setState({loaded: true});
     }
     
     componentDidMount() {
@@ -88,13 +104,13 @@ class SiteContainer extends React.Component {
         this.state.canvas.height = this.state.target.innerHeight;
         
         // Loader
-        this.loaderAnimationClass = new LoaderAnimation();
+        // this.loaderAnimationClass = new LoaderAnimation();
         
         // Background
         // this.homeAnimationClass = new HomeAnimation();
 
         // Logo
-        this.headerAnimationClass = new HeaderAnimation();
+        // this.headerAnimationClass = new HeaderAnimation();
 
         // Cursor
         this.cursorAnimationClass = new CursorAnimation(this.state.canvas.width/2, this.state.canvas.height/2);
@@ -110,44 +126,61 @@ class SiteContainer extends React.Component {
     }
 
     resizeCanvas()  {
-        this.state.canvas.width = this.state.target.innerWidth;
-        this.state.canvas.height = this.state.target.innerHeight;
+        this.setState({
+            canvas: {
+                width: this.state.target.innerWidth,
+                height: this.state.target.innerHeight
+            }
+        })
+        // this.state.canvas.width = this.state.target.innerWidth;
+        // this.state.canvas.height = this.state.target.innerHeight;
     }
 
     cursorMoved({clientX, clientY, target}) {
 
         // Set Mouse position on mouse move
-        this.state.mouse.x = clientX;
-        this.state.mouse.y = clientY;
+        // this.state.mouse.x = clientX;
+        // this.state.mouse.y = clientY;
+
+        this.setState({
+            mouse: {
+                x: clientX,
+                y: clientY
+            }
+        })
         
         
         // Update to random color on mouse move
         // this.homeAnimationClass.update();
+        // this.updateHomePage(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
 
         
         // Look at dom ID attrib to see whos being hovered
         this.cursorAnimationClass.cursor.target = target.className;
 
         // Set new deg for title rotation on mouse move
-        this.headerAnimationClass.update(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
+        // this.headerAnimationClass.update(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
         this.cursorAnimationClass.update(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
     }
 
     cursorOut() {
-        this.headerAnimationClass.rotate(0, 0);
+        // this.headerAnimationClass.update(0, 0);
         this.cursorAnimationClass.cursor.target = 'NotOnScreen';
     }
 
     update() {
         
         // update loader position
-        this.loaderAnimationClass.update(this.state.mouse.x, this.state.mouse.y);
+        // this.loaderAnimationClass.update(this.state.mouse.x, this.state.mouse.y);
+
+        this.updateLoaderComponent();
 
         // Rotate Header based on deg from mouse move
-        this.headerAnimationClass.update(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
+        // this.headerAnimationClass.update(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
 
         // draw changes to BG
         // this.homeAnimationClass.draw(this.canvas, this.context);
+        this.updateHomeComponent(this.state.mouse.x, this.state.mouse.y, this.state.canvas.width, this.state.canvas.height);
 
         // Cursor animation raf
         this.cursorAnimationClass.update(this.state.mouse.x, this.state.mouse.y);
