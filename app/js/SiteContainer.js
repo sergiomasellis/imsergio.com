@@ -6,13 +6,13 @@ import ReactDOM from "react-dom";
 import HomeComponent from "./HomeComponent";
 import CursorAnimation from "./CursorAnimation";
 // import Loading from "./LoadingIntro";
-import BackgroundComponent from "./BackgroundComponent";
+// import BackgroundComponent from "./BackgroundComponent";
 import LoaderComponent from './LoaderComponent';
 import CanvasComponent from './CanvasComponent';
 import NavigationComponent from './NavigationComponent';
 
 
-class SiteContainer extends React.Component {
+class SiteContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -97,7 +97,7 @@ class SiteContainer extends React.Component {
 
     init() {
         // Don't be rude say hi!
-        console.log('Welcome to Imsergio.com');
+        console.log('%c Welcome to ImSergio.com. You found my secret console try not to break anything! ', 'background: #222; color: #0ce9c1;');
 
         // Setup Canvas Default Size
         this.state.canvas.width = this.state.target.innerWidth;
@@ -139,15 +139,15 @@ class SiteContainer extends React.Component {
     cursorMoved({clientX, clientY, target}) {
 
         // Set Mouse position on mouse move
-        // this.state.mouse.x = clientX;
-        // this.state.mouse.y = clientY;
+        this.state.mouse.x = clientX;
+        this.state.mouse.y = clientY;
 
-        this.setState({
-            mouse: {
-                x: clientX,
-                y: clientY
-            }
-        })
+        // this.setState({
+        //     mouse: {
+        //         x: clientX,
+        //         y: clientY
+        //     }
+        // })
         
         
         // Update to random color on mouse move

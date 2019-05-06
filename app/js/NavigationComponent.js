@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class NavigationComponent extends React.Component {
+class NavigationComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -40,10 +40,10 @@ class NavigationComponent extends React.Component {
                 <div className={`navigation-modal ${(this.state.showMenu) ? '':'hide'}`}>
                     <nav>
                         <ul>
-                            <li><a href="#home" onClick={() => this.goToPage('home')} className={(this.state.currentPage == 'home') ? 'active':''}>Home</a></li>
-                            <li><a href="#resume" onClick={() => this.goToPage('resume')} className={(this.state.currentPage == 'resume') ? 'active':''}>Resume</a></li>
-                            <li><a href="#work" onClick={() => this.goToPage('work')} className={(this.state.currentPage == 'work') ? 'active':''}>Work</a></li>
-                            <li><a href="#contact" onClick={() => this.goToPage('contact')} className={(this.state.currentPage == 'contact') ? 'active':''}>Contact</a></li>
+                            <li><a href="#home" onClick={() => this.goToPage('home')} className={(this.state.currentPage == 'home') ? 'active':'not-active'}>Home</a></li>
+                            <li><a href="#resume" onClick={() => this.goToPage('resume')} className={(this.state.currentPage == 'resume') ? 'active':'not-active'}>Resume</a></li>
+                            <li><a href="#work" onClick={() => this.goToPage('work')} className={(this.state.currentPage == 'work') ? 'active':'not-active'}>Work</a></li>
+                            <li><a href="#contact" onClick={() => this.goToPage('contact')} className={(this.state.currentPage == 'contact') ? 'active':'not-active'}>Contact</a></li>
                         </ul> 
                     </nav>
                 </div>

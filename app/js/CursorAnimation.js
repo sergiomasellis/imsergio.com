@@ -61,7 +61,7 @@ class CursorAnimation {
         if(this.cursor.target == 'NotOnScreen') {
             this.cursor.scale.hover = 0.1;
             this.cursor.bg.hover = {r: 255, g:255, b:255, a:0};
-        } else if(this.cursor.target != 'canvas' && this.cursor.target != 'navigation-modal') {
+        } else if(this.cursor.target != 'canvas' && this.cursor.target != '') {
             this.cursor.scale.hover = 1;
             this.cursor.color.hover = {r: 0, g:30, b:62, a:0};
             this.cursor.bg.hover = {r: 0, g:255, b:255, a:1};

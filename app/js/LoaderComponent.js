@@ -1,9 +1,7 @@
 import { Lerp } from "./Utils";
+import React, {Component} from 'react';
 
-
-import React from 'react';
-
-class LoaderComponent extends React.Component {
+class LoaderComponent extends Component {
 
     constructor(props){
         super(props);
@@ -27,7 +25,7 @@ class LoaderComponent extends React.Component {
                 this.props.onLoaded();
             }
         
-        }.bind(this), 3000);
+        }.bind(this), 1000);
 
         this.update = this.update.bind(this);
     }
@@ -69,10 +67,10 @@ class LoaderComponent extends React.Component {
 
     render() {
         return (
-            <div ref={this.loader} className="loader">
+            <div ref={this.loader} className={`loader ${(this.loaded) ? 'loader--loaded': ''}`}>
                 <span className="loader__text">SM</span>
             </div>
-        )
+        );
     }
 }
 

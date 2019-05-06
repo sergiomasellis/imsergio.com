@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class HomeComponent extends React.Component {
+class HomeComponent extends Component {
 
     constructor(props){
         super(props);
@@ -15,13 +15,7 @@ class HomeComponent extends React.Component {
             hello: ['Hello', 'Hola', 'Bonjour', '&#20320;&#22909;', 'Hallo', 'Moi', 'Aluu', '&#12371;&#12435;&#12395;&#12385;&#12399;', 'Olá', 'Chào', 'Buon giorno']
         };
 
-        
-        // this.header = document.getElementById('logo');
-        // this.firstName = document.getElementsByClassName('welcome__firstName')[0];
-        // this.lastName = document.getElementsByClassName('welcome__lastName')[0];
-
         this.state = {
-            homeLoaded: false,
             changeText: false
         };
 
@@ -32,25 +26,18 @@ class HomeComponent extends React.Component {
 
     componentDidMount() {
         this.props.onSetUpdate(this.update);
-
-        // setTimeout(() => {
-        //     this.state.changeText = true;
-        //     // this.lastName.textContent = "H";
-        //     setInterval(() => {
-        //         this.firstName.current.innerHTML = this.font.hello[Math.floor(Math.random() * this.font.hello.length)];
-        //     }, 1500);
-        // }, 15000);
     }
 
     update(mouseX, mouseY, canvasWidth, canvasHeight) {
-        
+
+        // console.log(this.state)
+        if(!this.props.loaded) return false;
+
         this.font.y = this.calculateRotation(mouseX, 0, canvasWidth, -30, 30);
         this.font.x = this.calculateRotation(mouseY, 0, canvasHeight, -30, 30);
 
         // Rotate Header based on deg from mouse move
         var style = "translate(-50%, -50%) rotateX(" + this.font.x + "deg) rotateY(" + this.font.y + "deg)";
-        
-
         this.header.current.style.transform = style;
         this.header.current.style.webkitTransform = style;
         this.header.current.style.mozTransform = style;
@@ -68,10 +55,19 @@ class HomeComponent extends React.Component {
     }
 
     render() {
+
+        setTimeout(() => {
+            this.state.changeText = true;
+            // this.lastName.textContent = "H";
+            setInterval(() => {
+                this.firstName.current.innerHTML = this.font.hello[Math.floor(Math.random() * this.font.hello.length)];
+            }, 1500);
+        }, 15000);
+
         return (
-            <div ref={this.header} id="logo" className={`welcome ${(this.props.loaded) ? 'loaded' : 'not-loaded'} ${(this.props.loaded) ? 'show':'hide'}`}>
-                <span ref={this.firstName} className="welcome__firstName example-one">Hello</span>
-                <span className="welcome__lastName">Im Sergio</span>
+            <div ref={this.header} className={`home ${(this.props.loaded) ? 'home--loaded' : 'home--not-loaded'} ${(this.props.loaded) ? 'show':'hide'}`}>
+                <span ref={this.firstName} className="home__firstName">Hello</span>
+                <span className="home__lastName">Im Sergio</span>
             </div>
         );
     }

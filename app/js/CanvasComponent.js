@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from "react-dom";
+import React, {Component} from 'react';
+// import ReactDOM from "react-dom";
 
-class CanvasComponent extends React.Component {
+class CanvasComponent extends Component {
     render() {
         return (
             <canvas ref="canvas" id="canvas" className="canvas"/>

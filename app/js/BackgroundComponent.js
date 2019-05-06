@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class BackgroundComponent extends React.Component {
+class BackgroundComponent extends Component {
     constructor(props) {
         super(props);
 
