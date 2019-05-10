@@ -80,7 +80,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--color-text);
-    font-family: 'Raleway', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -225,6 +225,7 @@ a {
             align-self: flex-start;
             padding: 0;
             text-indent: -10px;
+            font-family: 'Raleway', sans-serif;
 
         }
     }
@@ -257,9 +258,11 @@ a {
             ul {
                 font-size: 1em;
                 line-height: 1.5em;
+                font-weight: 300;
             }
 
             h2 {
+                font-family: 'Raleway', sans-serif;
                 margin-bottom: 8px;
             }
     
