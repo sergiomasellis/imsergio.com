@@ -11,12 +11,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "animejs": "^3.0.1",
-    "scss": "^0.2.4",
-    "susy": "^3.0.5"
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "reactjs": "^1.0.0"
   },
   "devDependencies": {
-    "cssnano": "^4.1.8",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.10.0"
   }
 }

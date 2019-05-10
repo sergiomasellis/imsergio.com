@@ -1,5 +1,8 @@
-class HomeAnimation {
-    constructor() {
+import React, {Component} from 'react';
+
+class BackgroundComponent extends Component {
+    constructor(props) {
+        super(props);
 
         // Home Page background
         this.background = {
@@ -36,4 +39,4 @@ class HomeAnimation {
 }
 
 
-export default HomeAnimation;
+export default BackgroundComponent;
