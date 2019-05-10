@@ -2,6 +2,11 @@ import '../scss/main.scss';
 
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faDownload)
 
 import HomeComponent from "./HomeComponent";
 import CursorAnimation from "./CursorAnimation";
@@ -10,6 +15,7 @@ import CursorAnimation from "./CursorAnimation";
 import LoaderComponent from './LoaderComponent';
 import CanvasComponent from './CanvasComponent';
 import NavigationComponent from './NavigationComponent';
+import ResumeComponent from './ResumeComponent';
 
 
 class SiteContainer extends Component {
@@ -33,35 +39,34 @@ class SiteContainer extends Component {
         return  (
         <div> 
 
-            <CanvasComponent></CanvasComponent>
+            <div className="container">
+            
+                <CanvasComponent></CanvasComponent>
 
-            <HomeComponent 
-                loaded={this.state.loaded && this.state.currentPage === 'home'} 
-                onSetUpdate={home => this.updateHomeComponent = home}
-            ></HomeComponent>
+                <HomeComponent 
+                    loaded={this.state.loaded && this.state.currentPage === 'home'} 
+                    onSetUpdate={home => this.updateHomeComponent = home}
+                ></HomeComponent>
 
-            <LoaderComponent 
-                onLoaded={this.siteLoaded} 
-                onSetUpdate={loader => this.updateLoaderComponent = loader}
-            ></LoaderComponent>
+                <ResumeComponent
+                    loaded={this.state.loaded && this.state.currentPage === 'resume'} 
+                    onSetUpdate={resume => this.updateResumeComponent = resume}
+                ></ResumeComponent>
 
+                <LoaderComponent 
+                    onLoaded={this.siteLoaded} 
+                    onSetUpdate={loader => this.updateLoaderComponent = loader}
+                ></LoaderComponent>
+            
+            </div>
 
             <NavigationComponent onPageChange={this.navigateToPage}></NavigationComponent>
 
-
-            {/* <BackgroundComponent currentPage={this.state.currentPage}></BackgroundComponent> */}
-            {/* { this.state.currentPage === 'home' ? (<h1>Resume</h1>):('')} */}
-            
-            
-
-            
             <div className="cursor">
                 <div className="cursor__outer"></div>
                 <div className="cursor__inner"></div>
             </div>
 
-            
-            
         </div>);
     }
 
