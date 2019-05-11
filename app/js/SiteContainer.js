@@ -6,6 +6,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
+const someImage = require('../img/noise.png');
+
 library.add(faDownload)
 
 import HomeComponent from "./HomeComponent";
@@ -33,6 +35,8 @@ class SiteContainer extends Component {
 
         this.navigateToPage = this.navigateToPage.bind(this);
         this.siteLoaded = this.siteLoaded.bind(this);
+
+        this.canvasRef = React.createRef()
     }
 
     render() {
@@ -41,7 +45,7 @@ class SiteContainer extends Component {
 
             <div className="container">
             
-                <CanvasComponent></CanvasComponent>
+                <CanvasComponent canvasRef={this.canvasRef}></CanvasComponent>
 
                 <HomeComponent 
                     loaded={this.state.loaded && this.state.currentPage === 'home'} 
@@ -71,7 +75,6 @@ class SiteContainer extends Component {
     }
 
     navigateToPage(page){
-        console.log('outside', page);
         this.setState({currentPage: page});
     }
 
@@ -80,11 +83,24 @@ class SiteContainer extends Component {
     }
     
     componentDidMount() {
+        try {
+            window.VANTA.NET({
+                el: this.canvasRef.current,
+                backgroundColor:0x1c0034,
+                color: 0x0ce9c1,
+                points: 18.00,
+                maxDistance: 12.00,
+                spacing: 11.00
+            }) 
+        } catch (error) {
+            
+        }
+
 
         const node = ReactDOM.findDOMNode(this);
 
         // define dom Elements
-        this.state.canvas = node.getElementsByClassName('canvas')[0];
+        this.state.canvas = node.getElementsByClassName('vanta-canvas')[0];
 
         this.state.context = this.state.canvas.getContext('2d');
         this.state.target = window;
@@ -95,7 +111,12 @@ class SiteContainer extends Component {
         // // Don't Show Cursor
         this.state.showCursor = false;
 
-        // // Init
+
+
+
+
+
+        // Init
         this.init();
         this.events();
     }

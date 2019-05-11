@@ -2,17 +2,11 @@ import React, {Component} from 'react';
 // import ReactDOM from "react-dom";
 
 class CanvasComponent extends Component {
+
     render() {
         return (
-            <canvas ref="canvas" id="canvas" className="canvas"/>
+            <div ref={this.props.canvasRef} className="canvasContainer"></div>
         );
-    }
-    componentDidMount() {
-        // const node = ReactDOM.findDOMNode(this);
-        // // Get child nodes
-        // if (node instanceof HTMLElement) {
-        //     const child = node.querySelector('.someClass');
-        // }
     }
 }
 
