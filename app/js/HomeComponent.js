@@ -26,12 +26,27 @@ class HomeComponent extends Component {
 
     componentDidMount() {
         this.props.onSetUpdate(this.update);
+
+        this.StartTimer = setTimeout(() => {
+            this.state.changeText = true;
+            // this.lastName.textContent = "H";
+            this.SwapTimer = setInterval(() => {
+                if(this.firstName.current != null) {
+                    this.firstName.current.innerHTML = this.font.hello[Math.floor(Math.random() * this.font.hello.length)];
+                }
+            }, 1500);
+        }, 5000);
+    }
+
+    componentWillUnmount(){
+        clearTimeout(this.StartTimer);
+        clearInterval(this.SwapTimer);
     }
 
     update(mouseX, mouseY, canvasWidth, canvasHeight) {
 
         // console.log(this.state)
-        if(!this.props.loaded) return false;
+        if(!this.props.loaded || this.header.current === null) return false;
 
         this.font.y = this.calculateRotation(mouseX, 0, canvasWidth, -30, 30);
         this.font.x = this.calculateRotation(mouseY, 0, canvasHeight, -30, 30);
@@ -54,15 +69,11 @@ class HomeComponent extends Component {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
+
+
     render() {
 
-        setTimeout(() => {
-            this.state.changeText = true;
-            // this.lastName.textContent = "H";
-            setInterval(() => {
-                this.firstName.current.innerHTML = this.font.hello[Math.floor(Math.random() * this.font.hello.length)];
-            }, 1500);
-        }, 15000);
+        
 
         return (
             <div ref={this.header} className={`home ${(this.props.loaded) ? 'home--loaded' : 'home--not-loaded'} ${(this.props.loaded) ? 'show':'hide'}`}>

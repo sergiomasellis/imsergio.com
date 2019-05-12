@@ -42,7 +42,7 @@ class CursorAnimation {
         this.cursor.elementInner.style.backgroundColor = `rgba(${this.cursor.bg.default.r}, ${this.cursor.bg.default.g}, ${this.cursor.bg.default.b}, ${this.cursor.bg.default.a})`;
         this.cursor.elementOuter.style.borderColor = `rgba(${ this.cursor.outerBg.default.r}, ${ this.cursor.outerBg.default.g}, ${ this.cursor.outerBg.default.b}, ${ this.cursor.outerBg.default.a}`;
         
-        const stylePosition = `translate(${Math.floor(this.cursor.x-20)}px, ${Math.floor(this.cursor.y-20)}px)`;
+        const stylePosition = `translate(${Math.floor(this.cursor.x-25)}px, ${Math.floor(this.cursor.y-25)}px)`;
         this.cursor.element.style.transform = stylePosition;
         this.cursor.element.style.webkitTransform = stylePosition;
         this.cursor.element.style.mozTransform = stylePosition;
@@ -57,11 +57,11 @@ class CursorAnimation {
         this.cursor.elementOuter.style.oTransform = stylePosition2;
         
         // cursor.x > canvas.width/2
-        // console.log(this.cursor.target)
+        console.log(this.cursor.target)
         if(this.cursor.target == 'NotOnScreen') {
             this.cursor.scale.hover = 0.1;
             this.cursor.bg.hover = {r: 255, g:255, b:255, a:0};
-        } else if(this.cursor.target != 'canvas' && this.cursor.target != '') {
+        } else if(this.cursor.target != 'vanta-canvas' && this.cursor.target != '') {
             this.cursor.scale.hover = 1;
             this.cursor.color.hover = {r: 0, g:30, b:62, a:0};
             this.cursor.bg.hover = {r: 0, g:255, b:255, a:1};

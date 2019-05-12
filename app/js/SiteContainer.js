@@ -2,22 +2,21 @@ import '../scss/main.scss';
 
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
-const someImage = require('../img/noise.png');
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faDownload, faTwitter } from '@fortawesome/free-solid-svg-icons'
+// library.add(faDownload)
+// library.add(faDownload)
 
-library.add(faDownload)
 
 import HomeComponent from "./HomeComponent";
 import CursorAnimation from "./CursorAnimation";
-// import Loading from "./LoadingIntro";
-// import BackgroundComponent from "./BackgroundComponent";
 import LoaderComponent from './LoaderComponent';
 import CanvasComponent from './CanvasComponent';
 import NavigationComponent from './NavigationComponent';
 import ResumeComponent from './ResumeComponent';
+import SocialComponent from './SocialComponent';
 
 
 class SiteContainer extends Component {
@@ -45,7 +44,10 @@ class SiteContainer extends Component {
 
             <div className="container">
             
-                <CanvasComponent canvasRef={this.canvasRef}></CanvasComponent>
+                <CanvasComponent 
+                    loaded={this.state.loaded}
+                    canvasRef={this.canvasRef}
+                 ></CanvasComponent>
 
                 <HomeComponent 
                     loaded={this.state.loaded && this.state.currentPage === 'home'} 
@@ -57,10 +59,14 @@ class SiteContainer extends Component {
                     onSetUpdate={resume => this.updateResumeComponent = resume}
                 ></ResumeComponent>
 
+                <SocialComponent></SocialComponent>
+
                 <LoaderComponent 
                     onLoaded={this.siteLoaded} 
                     onSetUpdate={loader => this.updateLoaderComponent = loader}
                 ></LoaderComponent>
+
+
             
             </div>
 
@@ -93,7 +99,7 @@ class SiteContainer extends Component {
                 spacing: 11.00
             }) 
         } catch (error) {
-            
+            console.error(error);
         }
 
 
@@ -112,13 +118,13 @@ class SiteContainer extends Component {
         this.state.showCursor = false;
 
 
-
-
-
-
         // Init
         this.init();
         this.events();
+    }
+
+    componentWillUnmount() {
+        this.stopEvents();
     }
 
     init() {
@@ -149,6 +155,12 @@ class SiteContainer extends Component {
         this.state.target.addEventListener('resize', this.resizeCanvas.bind(this), false);
         this.state.target.addEventListener('mousemove', this.cursorMoved.bind(this), false);
         this.state.target.addEventListener('mouseout', this.cursorOut.bind(this), false);
+    }
+
+    stopEvents() {
+        this.state.target.removeEventListener('resize', null);
+        this.state.target.removeEventListener('mousemove', null);
+        this.state.target.removeEventListener('mouseout', null);
     }
 
     resizeCanvas()  {

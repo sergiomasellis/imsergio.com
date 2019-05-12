@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
 class ResumeComponent extends Component {
   constructor(props) {
@@ -25,13 +26,13 @@ class ResumeComponent extends Component {
       >
         <div className="info">
           <h1>Resume</h1>
-          <a href="https://www.dropbox.com/s/s3zddzd9kvroa2q/Resume.pdf?dl=0" download> <FontAwesomeIcon icon="download" /> Download</a>
+          <a href="https://www.dropbox.com/s/s3zddzd9kvroa2q/Resume.pdf?dl=0" download> <FontAwesomeIcon icon={faDownload} /> Download</a>
         </div>
 
         <div className="job">
           <div className="job__item">
             <h2>BBVA</h2>
-            <h3>Creative Technologist, Design principal VP</h3>
+            <h3>Vice President, Creative Technologist</h3>
             <h4>May 2017 - Present</h4>
             
             <ul>
@@ -59,7 +60,7 @@ class ResumeComponent extends Component {
           <div className="job__item">
             <h2>CAPITAL ONE</h2>
             <h3>Principal Software Engineer</h3>
-            <h4>April 2016 - May 2017</h4>
+            <h4>APR 2016 - May 2017</h4>
             <ul>
               <li>Worked as a senior developer under the auto finance branch of capital one.</li>
               <li>Converted marketing landing pages over to a custom angular.js front end from their legacy platform.</li>
@@ -73,7 +74,7 @@ class ResumeComponent extends Component {
           <div className="job__item">
             <h2>BARCLAYS </h2>
             <h3>Assistant Vice President, Front End Development</h3>
-            <h4>April 2016 - May 2017</h4>
+            <h4>MAR 2016 - APR 2017</h4>
             <ul>
               <li>Created a C++ media wall application utilizing bleeding edge computer vision technology, Tuio, and best in class animations.</li>
               <li>Created an in house Kanban board application using technologies like Meteor.js and Less was used for styling.</li>
@@ -86,7 +87,7 @@ class ResumeComponent extends Component {
           <div className="job__item">
             <h2>INFOVISION</h2>
             <h3>Lead Web Developer</h3>
-            <h4>October 2011 - April 2015</h4>
+            <h4>OCT 2011 - APR 2015</h4>
             <ul>
               <li>Working on creating a full working analytics dashboard using technologies like svg and ember.js</li>
               <li>Created an Ipad HTML5 quiz game in javascript.</li>
@@ -97,9 +98,9 @@ class ResumeComponent extends Component {
             </ul>
           </div>
           <div className="job__item">
-            <h2>THE FIGMENT GROUP</h2>
+            <h2>FIGMENT GROUP</h2>
             <h3>Web Designer</h3>
-            <h4>February 2011 - September 2011</h4>
+            <h4>FEB 2011 - SEPT 2011</h4>
             <ul>
               <li>Built an inventory management system in Codeigniter to manage orders and warehouse inventory with use of PDO.</li>
               <li>Built a script in PHP5 which used MaxMind GeoIP to manage client rates from different countries.</li>
@@ -113,7 +114,7 @@ class ResumeComponent extends Component {
           <div className="job__item">
             <h2>ZEROFRACTAL</h2>
             <h3>Web Developer</h3>
-            <h4>October 2011 - April 2015</h4>
+            <h4>OCT 2010 - JAN 2011</h4>
             <ul>
               <li>Built a Codeigniter website with the use of CSS3 animation, WebKit acceleration, AJAX, jQuery, and Google Maps API.</li>
               <li>Worked as part of a team who built a fully working Flash AS3 and PHP5 website in 2 days.</li>
@@ -121,16 +122,32 @@ class ResumeComponent extends Component {
             </ul>
           </div>
           <div className="job__item">
-            <h2>INFOVISION</h2>
-            <h3>Lead Web Developer</h3>
-            <h4>October 2011 - April 2015</h4>
+            <h2>SAPIENTNITRO</h2>
+            <h3>Flash Developer</h3>
+            <h4>MAY 2010 - AUG 2010</h4>
             <ul>
-              <li>Working on creating a full working analytics dashboard using technologies like svg and ember.js</li>
-              <li>Created an Ipad HTML5 quiz game in javascript.</li>
-              <li>Designed conceptual work and prototypes using adobe photoshop.</li>
-              <li>Experience with Disability Discrimination Act (DDA) Compliance and design.</li>
-              <li>Worked to create a framework to simplify the creation of hybrid IOS applications.</li>
-              <li>Created a contest application written in PHP and Codeigniter launched for the 2012 London Olympics.</li>
+              <li>Worked on Flash ads for companies like Sprint, M&M, and GM.</li>
+              <li>Worked on email campaigns with for various P&G projects</li>
+            </ul>
+          </div>
+          <div className="job__item">
+            <h2>EXPOBYTES</h2>
+            <h3>E-commerce Developer</h3>
+            <h4>MAY 2008 - APR 2010</h4>
+            <ul>
+              <li>Built a Codeigniter client point system which allowed clients to turn in vendor sales in exchange for reward points.</li>
+              <li>Built a Codeigniter shipping system that estimated the amount of shipping boxes fit in a container.</li>
+              <li>Built Email Campaigns using Constant Contact.</li>
+              <li>Created Print ad’s used for publications.</li>
+              <li>Built and designed two websites running on the Magento e-commerce platform.</li>
+            </ul>
+          </div>
+          <div className="job__item">
+            <h2>LATIN MISSIONS</h2>
+            <h3>Web Manager</h3>
+            <h4>APR 2007 - APR 2008</h4>
+            <ul>
+              <li>Worked as the main web developer in charge of update website content as well as creating new websites for events and departments.</li>
             </ul>
           </div>
         </div>
