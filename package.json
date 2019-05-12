@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "node-sass": "^4.10.0"
+    "node-sass": "^4.10.0",
+    "parcel": "^1.12.3"
   }
 }
