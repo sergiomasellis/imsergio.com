@@ -1,8 +1,26 @@
-// $primary_color: #222831;
-// $primary-dark_color: darken( $primary_color, 10% );
-// $text_color: #eeeeee;
-// $accent_color: #d65a31;
-// $accent-dark_color:  #393e46;
+/*********************
+BREAKPOINTS
+*********************/
+
+@mixin breakpoint($point) {
+    @if $point == desktop {
+      @media (min-width: 70em) { @content ; }
+   }
+    @else if $point == laptop {
+      @media (min-width: 64em) { @content ; }
+   }
+     @else if $point == tablet {
+      @media (min-width: 50em) { @content ; }
+   }
+    @else if $point == phablet {
+      @media (min-width: 37.5em)  { @content ; }
+   }
+   @else if $point == mobileonly {
+      @media (max-width: 37.5em)  { @content ; }
+ 
+   }
+ }
+ 
 
 // Blues and reds
 // $primary_color: #240041;
@@ -36,7 +54,15 @@
 * {
     margin: 0;
     padding: 0;
-    cursor: none;
+    // cursor: none;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* to remove the top and left whitespace */
@@ -116,14 +142,16 @@ a {
 .job {
     &::-webkit-scrollbar {
         background-color: var(--color-primary);
+        width: 2px;
     }
     &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
         background-color: var(--color-accent);
+        mix-blend-mode: difference;
     }
     &::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background-color: var(--color-primaryDark);   
+        width: 2px;
+        background-color: rgba(100, 100, 100, 0.14);
+        mix-blend-mode: difference;
     }
 }
 
@@ -161,10 +189,6 @@ a {
         margin-top: -81px;
         letter-spacing: 8px;
     }
-
-    // &.fadeout {
-    //     opacity: 0;
-    // }
 }
 
 
@@ -176,8 +200,6 @@ a {
     perspective: 40px;
     transform: translate(-50%, -50%);
     transform-style: preserve-3d;
-    // will-change: transform, rotateX, rotateY;
-    // transition: transform 0.5s ease-in-out, rotateX 0.3s ease-in-out, rotateY 0.3s ease-in-out;
     opacity: 0;
 
     &--not-loaded {
@@ -196,17 +218,28 @@ a {
     text-align: center;
     font-family: 'phosphatesolid', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
-    font-size: 10em;
+    font-size: 3em;
     padding: 0;
     margin: 0;
     font-weight: normal;
     perspective: 40px;
+
+    @include breakpoint(tablet){
+        font-size: 5em;
+    }
+
+    @include breakpoint(laptop){
+        font-size: 10em;
+    }
 }
 
 .home__firstName,
 .home__lastName {
     text-shadow: 0px 15px 5px rgba(0, 0, 0, 0.1), 10px 20px 5px rgba(0, 0, 0, 0.05), -10px 20px 5px rgba(0, 0, 0, 0.05);
-    line-height: 91px;
+    line-height: 0.5em;
+    @include breakpoint(laptop){
+        line-height: 91px;
+    }
 }
 
 
@@ -218,8 +251,15 @@ a {
 .social {
     position: absolute;
     z-index: var(--zindex-navigation);
-    bottom: 5%;
-    right: 5%;
+    top: 2%;
+    right: 15%;
+
+    @include breakpoint(tablet) {
+        top:auto;
+        bottom: 5%;
+        right: 5%;
+    }
+
     a {
         padding: 8px;
         font-size: 1.5em;
@@ -236,27 +276,41 @@ a {
     top: 0;
     left: 0;
     opacity: 0;
-    margin: 110px 67px;
+    margin: 110px 16px;
     flex: 1;
     height: calc(100vh - 220px);
     flex-wrap: wrap;
+
+    @include breakpoint(tablet) {
+        margin: 110px 67px;
+    }
 
 
     .info {
         display: flex;
         flex:1;
         flex-flow: column;
-        margin-bottom: 40px;
+        padding-left: 16px;
+        margin-bottom: 20px;
+
+        @include breakpoint(tablet) {
+            padding-left: 0px;
+            margin-bottom: 40px;
+        }
         
         
         h1 {
-            font-size: 10em;
+            font-size: 5em;
             color: var(--color-accent);
             align-self: flex-start;
             padding: 0;
-            text-indent: -10px;
+            text-indent: -5px;
             font-family: 'Raleway', sans-serif;
 
+            @include breakpoint(tablet) {
+                font-size: 10em;
+                text-indent: -10px;
+            }
         }
     }
 
@@ -265,21 +319,36 @@ a {
         flex-direction: row;
         flex-wrap: wrap;
         flex: 1 1 100%;
-        height: calc(100vh - 400px);
+        height: calc(100vh);
         overflow-y: overlay;
         overflow-x: visible;
         padding: 8px;
-        
+
+        @include breakpoint(tablet) {
+            height: calc(100vh - 500px);
+        }
 
 
         &__item {
-            flex: 1 1 calc(33.33% - 134px);
+            flex: 1 1 calc(100% - 134px);
             background: rgba(0, 0, 0, 0.8);
             padding: 16px;
             margin-right: 32px;
             margin-bottom: 32px;
             transition: all 300ms ease-in-out;
             position: relative;
+
+            @include breakpoint(tablet) {
+                flex: 1 1 calc(50% - 134px);
+            }
+
+            @include breakpoint(laptop) {
+                flex: 1 1 calc(34% - 134px);
+            }
+
+            // @include breakpoint(desktop) {
+            //     flex: 1 1 calc(33.333% - 134px);
+            // }
 
 
             ul {
@@ -311,12 +380,19 @@ a {
             h4 {
                 position: absolute;
                 top: 0;
-                right: 0;
                 font-size: 12px;
                 font-weight: 800;
                 color: var(--color-text);
                 background: var(--color-primaryDark);
                 padding: 8px 16px;
+                right: 30px;
+                transform-origin: right top;
+                transform: rotate(-90deg);
+
+
+                @include breakpoint(tablet) {
+                    top: 0;
+                }
             }
 
             &:before {
@@ -347,10 +423,6 @@ a {
         }
     }
 
-    
-
-
-
     &--not-loaded {
         pointer-events: none;
     }
@@ -359,21 +431,6 @@ a {
         opacity: 1;
     }
 }
-
-/* video */
-// .videoContainer {
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     top: 0;
-//     left: 0;
-//     bottom: 0;
-//     right: 0;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-// }
 
 .cursor {
     position: absolute;
@@ -416,9 +473,14 @@ a {
 
 .navigation {
     position: absolute;
-    top: 40px;
-    right: 67px;
+    top: 20px;
+    right: 27px;
     z-index: var(--zindex-navigation);
+
+    @include breakpoint(tablet){
+        top: 40px;
+        right: 67px;
+    }
 
     &__top,
     &__mid,
@@ -510,9 +572,16 @@ a {
                         text-transform: uppercase;
                         font-family: 'Raleway', sans-serif;
                         font-weight: 800;
-                        font-size: 8em;
-                        line-height: 2em;
+                        font-size: 2em;
+                        line-height: 3em;
+                        
                         border-bottom: 30px solid rgba(0, 0, 0, 0);
+
+                        @include breakpoint(tablet){
+                            font-size: 8em;
+                            line-height: 2em;
+                        }
+                        
     
                         &.active {
                             color: var(--color-accent);
@@ -527,36 +596,55 @@ a {
                         }
     
                         &:hover:after {
-                            width: 110%;
+                            width: 115%;
+                            @include breakpoint(tablet){
+                                width: 110%;
+                            }
                         }
     
                         &:hover:before {
-                            right: -30px;
+                            right: -20px;
+
+                            @include breakpoint(tablet){
+                                right: -30px;
+                            }
                         }
     
                         &:before {
                             display: block;
                             position: absolute;
                             content: "";
-                            top: 45px;
+                            top: 3px;
                             right: 105%;
                             width: 0;
                             height: 0;
-                            border-top: 30px solid transparent;
-                            border-bottom: 30px solid transparent;
-                            border-left: 30px solid var(--color-accent);
+                            border-top: 15px solid transparent;
+                            border-bottom: 15px solid transparent;
+                            border-left: 15px solid var(--color-accent);
                             transition: all 300ms ease-in-out;
+
+                            @include breakpoint(tablet){
+                                top: 45px;
+                                border-top: 30px solid transparent;
+                                border-bottom: 30px solid transparent;
+                                border-left: 30px solid var(--color-accent);
+                            }
                         }
     
                         &:after {
                             display: block;
                             content: "";
                             position: absolute;
-                            top: 60px;
+                            top: 14px;
                             left: -10%;
                             width: 0;
                             transition: all 300ms ease-in-out;
-                            border-bottom: 30px solid var(--color-accent);
+                            border-bottom: 7px solid var(--color-accent);
+
+                            @include breakpoint(tablet){
+                                top: 60px;
+                                border-bottom: 30px solid var(--color-accent);
+                            }
                         }
                     }
                 }

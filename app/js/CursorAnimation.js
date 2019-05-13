@@ -57,7 +57,7 @@ class CursorAnimation {
         this.cursor.elementOuter.style.oTransform = stylePosition2;
         
         // cursor.x > canvas.width/2
-        console.log(this.cursor.target)
+        // console.log(this.cursor.target)
         if(this.cursor.target == 'NotOnScreen') {
             this.cursor.scale.hover = 0.1;
             this.cursor.bg.hover = {r: 255, g:255, b:255, a:0};
