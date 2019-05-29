@@ -328,6 +328,7 @@ a {
         overflow-y: overlay;
         overflow-x: visible;
         padding: 8px;
+        -webkit-overflow-scrolling: touch;
 
         @include breakpoint(tablet) {
             height: calc(100vh - 500px);
@@ -480,14 +481,15 @@ a {
     position: absolute;
     // top: 20px;
     // right: 27px;
-
     top: 12px;
     right: 8px;
     z-index: var(--zindex-navigation);
+    transform: scale(0.7);
 
     @include breakpoint(tablet){
         top: 40px;
         right: 67px;
+        transform: scale(1);
     }
 
     &__top,

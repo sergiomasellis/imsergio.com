@@ -41,9 +41,9 @@ class NavigationComponent extends Component {
                     <nav>
                         <ul>
                             <li><a href="#home" onClick={() => this.goToPage('home')} className={(this.state.currentPage == 'home') ? 'active':'not-active'}>Home</a></li>
-                            <li><a href="#about" onClick={() => this.goToPage('about')} className={(this.state.currentPage == 'about') ? 'active':'not-active'}>About</a></li>
+                            {/* <li><a href="#about" onClick={() => this.goToPage('about')} className={(this.state.currentPage == 'about') ? 'active':'not-active'}>About</a></li> */}
                             <li><a href="#resume" onClick={() => this.goToPage('resume')} className={(this.state.currentPage == 'resume') ? 'active':'not-active'}>Resume</a></li>
-                            <li><a href="#contact" onClick={() => this.goToPage('contact')} className={(this.state.currentPage == 'contact') ? 'active':'not-active'}>Contact</a></li>
+                            {/* <li><a href="#contact" onClick={() => this.goToPage('contact')} className={(this.state.currentPage == 'contact') ? 'active':'not-active'}>Contact</a></li> */}
                         </ul> 
                     </nav>
                 </div>

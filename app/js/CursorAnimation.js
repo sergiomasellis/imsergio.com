@@ -1,4 +1,4 @@
-import { Lerp } from "./Utils";
+import { Lerp, isMobile } from "./Utils";
 
 class CursorAnimation {
     constructor(canvasCenterX, canvasCenterY) {

@@ -1,4 +1,4 @@
-import { Lerp } from "./Utils";
+import { Lerp, isMobile } from "./Utils";
 import React, {Component} from 'react';
 
 class LoaderComponent extends Component {
@@ -53,7 +53,12 @@ class LoaderComponent extends Component {
         } else if(this.loaded && !this.loaderAnimationComplete) {
             // this.loader.current.classList.add('fadeout');
             // this.loader.current.style.transition = '0.5s transform ease-in';
-            const stylePosition = `translate(0px, 0px) scale(0.3)`;
+            let stylePosition = `translate(0px, 0px) scale(0.3)`;
+            
+            if(isMobile()) {
+                stylePosition = `translate(14px, 6px) scale(0.6)`;
+            }
+            
             this.loader.current.style.left = 0;
             this.loader.current.style.top = 0;
             this.loader.current.style.transform = stylePosition;
