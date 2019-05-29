@@ -175,6 +175,11 @@ a {
     will-change: transform, top, left;
     transition: transform 450ms ease-in-out, left 450ms ease-in-out, top 450ms ease-in-out;
     line-height: 100%;
+    height: 41px;
+
+    @include breakpoint(tablet){
+        height: auto;
+    }
 
     &--loaded:after {
         display: none !important;
@@ -251,8 +256,8 @@ a {
 .social {
     position: absolute;
     z-index: var(--zindex-navigation);
-    top: 2%;
-    right: 15%;
+    top: 10px;
+    right: 53px;
 
     @include breakpoint(tablet) {
         top:auto;
@@ -473,8 +478,11 @@ a {
 
 .navigation {
     position: absolute;
-    top: 20px;
-    right: 27px;
+    // top: 20px;
+    // right: 27px;
+
+    top: 12px;
+    right: 8px;
     z-index: var(--zindex-navigation);
 
     @include breakpoint(tablet){

@@ -19,7 +19,7 @@ class HomeComponent extends Component {
             changeText: false
         };
 
-        this.header = React.createRef();
+        this.header = this.props.homeRef;
         this.firstName = React.createRef();
         this.update = this.update.bind(this);
     }
@@ -69,14 +69,9 @@ class HomeComponent extends Component {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
-
-
     render() {
-
-        
-
         return (
-            <div ref={this.header} className={`home ${(this.props.loaded) ? 'home--loaded' : 'home--not-loaded'} ${(this.props.loaded) ? 'show':'hide'}`}>
+            <div ref={this.props.homeRef} className={`home ${(this.props.loaded) ? 'home--loaded' : 'home--not-loaded'} ${(this.props.loaded) ? 'show':'hide'}`}>
                 <span ref={this.firstName} className="home__firstName">Hello</span>
                 <span className="home__lastName">Im Sergio</span>
             </div>
