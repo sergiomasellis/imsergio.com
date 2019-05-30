@@ -7,10 +7,136 @@ class ResumeComponent extends Component {
     super(props);
 
     this.update = this.update.bind(this);
+    this.title = React.createRef();
+
+    this.state = {};
+
+    this.state.jobs = [
+      {
+        company: "BBVA",
+        position: "Vice President, Creative Technologist",
+        timeFrame: "May 2017 - Present",
+        achievements: [
+          "Led the technical team behind the creation of 6 bank sites within a multiproduct platform called BBVA Experience using both AWS and GCP running on PHP / Javascript and wordpress for CMS to static site generator.",
+          "Worked on the creation of a data-driven dashboard utilizing technologies like Vue.js, Smartsheets, and Node.js backend.",
+          "Created a brand portal hub to store, organize, document, and distribute BBVA assets.",
+          "Created a Javascript library based on the global design system with reusable web components"
+        ]
+      },
+      {
+        company: "CAPITAL ONE",
+        position: "Principal Software Engineer",
+        timeFrame: "APR 2016 - May 2017",
+        achievements: [
+          "Worked as a senior developer under the auto finance branch of Capital One.",
+          "Converted marketing landing pages over to a custom angular.js front end from their legacy platform.",
+          "Pioneered the use of Angular 2.0 within the updated marketing pages with the use of Contentful CMS to generate the content.",
+          "Created seamless Adobe Target experiences across multiple platforms.",
+          "Engineered a solution which allowed for voice search of make model and colors of cars.",
+          "Helped mentor and train junior developers."
+        ]
+      },
+      {
+        company: "BARCLAYS",
+        position: "Assistant Vice President, Front End Development",
+        timeFrame: "MAR 2016 - APR 2017",
+        achievements: [
+          "Created a C++ media wall application utilizing bleeding edge computer vision technology, Tuio, and best in class animations.",
+          "Created an in house Kanban board application using technologies like Meteor.js and Less was used for styling.",
+          "Setup an automated system for application deployment utilizing technologies like Ruby, Python, Git, and Node.js.",
+          "Utilized tools like Framer.js for rapid prototyping experiments for a wide array of applications.",
+          "Created a 12 month program for the betterment and improvement of developers in order to expand and sharpen team skills."
+        ]
+      },
+      {
+        company: "INFOVISION",
+        position: "Lead Web Developer",
+        timeFrame: "OCT 2011 - APR 2015",
+        achievements: [
+          "Working on creating a full working analytics dashboard using technologies like SVG and Ember.js",
+          "Created an Ipad HTML5 quiz game in javascript.",
+          "Designed conceptual work and prototypes using adobe photoshop.",
+          "Experience with Disability Discrimination Act (DDA) Compliance and design.",
+          "Worked to create a framework to simplify the creation of hybrid IOS applications.",
+          "Created a contest application written in PHP and Codeigniter launched for the 2012 London Olympics."
+        ]
+      },
+      {
+        company: "FIGMENT GROUP",
+        position: "Web Designer",
+        timeFrame: "FEB 2011 - SEPT 2011",
+        achievements: [
+          "Built an inventory management system in Codeigniter to manage orders and warehouse inventory with use of PDO.",
+          "Built a script in PHP5 which used MaxMind GeoIP to manage client rates from different countries.",
+          "Built a news management system which in order to easily update a Flash website.",
+          "Built a fully custom Wordpress template using CSS3 and PHP5.",
+          "Built a mobile website for a using CSS3 and jQuery Mobile.",
+          "Tracked flash ad Campaigns using Google Analytics.",
+          "Revamped an existing Classic ASP calendar application."
+        ]
+      },
+      {
+        company: "ZEROFRACTAL",
+        position: "Web Developer",
+        timeFrame: "OCT 2010 - JAN 2011",
+        achievements: [
+          "Built a Codeigniter website with the use of CSS3 animation, WebKit acceleration, AJAX, jQuery, and Google Maps API.",
+          "Worked as part of a team who built a fully working Flash AS3 and PHP5 website in 2 days.",
+          "Built a mobile website for a using CSS3 and jQuery Mobile.",
+        ]
+      },
+      {
+        company: "SAPIENTNITRO",
+        position: "Flash Developer",
+        timeFrame: "MAY 2010 - AUG 2010",
+        achievements: [
+          "Worked on Flash ads for companies like Sprint, M&M, and GM.",
+          "Worked on email campaigns with for various P&G projects."
+        ]
+      },
+      {
+        company: "EXPOBYTES",
+        position: "E-commerce Developer",
+        timeFrame: "MAY 2008 - APR 2010",
+        achievements: [
+          "Built a Codeigniter client point system which allowed clients to turn in vendor sales in exchange for reward points.",
+          "Built a Codeigniter shipping system that estimated the amount of shipping boxes fit in a container.",
+          "Built Email Campaigns using Constant Contact.",
+          "Created Print ad’s used for publications.",
+          "Built and designed two websites running on the Magento e-commerce platform."
+        ]
+      },
+      {
+        company: "LATIN MISSIONS",
+        position: "Web Manager",
+        timeFrame: "APR 2007 - APR 2008",
+        achievements: [
+          "Worked as the main web developer in charge of update website content as well as creating new websites for events and departments"
+        ]
+      }
+    ]
   }
 
   componentDidMount() {
     this.props.onSetUpdate(this.update);
+
+    let text = this.title.current;
+    let newDom = '';
+    let animationDelay = 6;
+
+    for(let i = 0; i < text.innerText.length; i++)
+    {
+        newDom += '<span class="char">' + (text.innerText[i] == ' ' ? '&nbsp;' : text.innerText[i])+ '</span>';
+    }
+
+    text.innerHTML = newDom;
+    let length = text.children.length;
+
+    for(let i = 0; i < length; i++)
+    {
+        text.children[i].style['animation-delay'] = animationDelay * i + 'ms';
+    }
+
   }
 
   update(mouseX, mouseY, canvasWidth, canvasHeight) {
@@ -18,6 +144,9 @@ class ResumeComponent extends Component {
   }
 
   render() {
+    const content = this.state.jobs.map((job, index) => 
+      <div className="job__item" key={index}><h2>{job.company}</h2><h3>{job.position}</h3><h4>{job.timeFrame}</h4><ul>{job.achievements.map((achieve, aindex) => <li key={aindex}>{achieve}</li>)}</ul></div>
+    );
     return (
       <div
         className={`resume ${
@@ -25,131 +154,12 @@ class ResumeComponent extends Component {
         } ${this.props.loaded ? 'show' : 'hide'}`}
       >
         <div className="info">
-          <h1>Resume</h1>
+          <h1 ref={this.title}  className={`resume-title ${this.props.loaded ? 'resume-title--loaded' : ''}`}>Resume</h1>
           <a href="https://www.dropbox.com/s/s3zddzd9kvroa2q/Resume.pdf?dl=0" download> <FontAwesomeIcon icon={faDownload} /> Download</a>
         </div>
 
         <div className="job">
-          <div className="job__item">
-            <h2>BBVA</h2>
-            <h3>Vice President, Creative Technologist</h3>
-            <h4>May 2017 - Present</h4>
-            
-            <ul>
-              <li>
-                Led the technical team behind the creation of 6 bank sites within
-                a multiproduct platform called BBVA Experience using both AWS and
-                GCP running on PHP / Javascript and wordpress for CMS to static
-                site generator.
-              </li>
-              <li>
-                Worked on the creation of a data-driven dashboard utilizing
-                technologies like Vue.js, Smartsheets, and Node.js backend.
-              </li>
-              <li>
-                Created a brand portal hub to store, organize, document, and
-                distribute BBVA assets.
-              </li>
-              <li>
-                Created a Javascript library based on the global design system
-                with reusable web components
-              </li>
-            </ul>
-          </div>
-
-          <div className="job__item">
-            <h2>CAPITAL ONE</h2>
-            <h3>Principal Software Engineer</h3>
-            <h4>APR 2016 - May 2017</h4>
-            <ul>
-              <li>Worked as a senior developer under the auto finance branch of capital one.</li>
-              <li>Converted marketing landing pages over to a custom angular.js front end from their legacy platform.</li>
-              <li>Pioneered the use of Angular 2.0 within the updated marketing pages with the use of Contentful CMS to generate the content.</li>
-              <li>Created seamless Adobe Target experiences across multiple platforms.</li>
-              <li>Engineered a solution which allowed for voice search within the capital one auto finance site.</li>
-              <li>Helped mentor and train junior developers.</li>
-            </ul>
-          </div>
-
-          <div className="job__item">
-            <h2>BARCLAYS </h2>
-            <h3>Assistant Vice President, Front End Development</h3>
-            <h4>MAR 2016 - APR 2017</h4>
-            <ul>
-              <li>Created a C++ media wall application utilizing bleeding edge computer vision technology, Tuio, and best in class animations.</li>
-              <li>Created an in house Kanban board application using technologies like Meteor.js and Less was used for styling.</li>
-              <li>Setup an automated system for application deployment utilizing technologies like Ruby, Python, Git, and Node.js.</li>
-              <li>Utilized tools like Framer.js for rapid prototyping experiments for a wide array of applications.</li>
-              <li>Created a 12 month program for the betterment and improvement of developers in order to expand and sharpen team skills.</li>
-            </ul>
-          </div>
-
-          <div className="job__item">
-            <h2>INFOVISION</h2>
-            <h3>Lead Web Developer</h3>
-            <h4>OCT 2011 - APR 2015</h4>
-            <ul>
-              <li>Working on creating a full working analytics dashboard using technologies like svg and ember.js</li>
-              <li>Created an Ipad HTML5 quiz game in javascript.</li>
-              <li>Designed conceptual work and prototypes using adobe photoshop.</li>
-              <li>Experience with Disability Discrimination Act (DDA) Compliance and design.</li>
-              <li>Worked to create a framework to simplify the creation of hybrid IOS applications.</li>
-              <li>Created a contest application written in PHP and Codeigniter launched for the 2012 London Olympics.</li>
-            </ul>
-          </div>
-          <div className="job__item">
-            <h2>FIGMENT GROUP</h2>
-            <h3>Web Designer</h3>
-            <h4>FEB 2011 - SEPT 2011</h4>
-            <ul>
-              <li>Built an inventory management system in Codeigniter to manage orders and warehouse inventory with use of PDO.</li>
-              <li>Built a script in PHP5 which used MaxMind GeoIP to manage client rates from different countries.</li>
-              <li>Built a news management system which in order to easily update a Flash website.</li>
-              <li>Built a fully custom Wordpress template using CSS3 and PHP5.</li>
-              <li>Built a mobile website for a using CSS3 and jQuery Mobile.</li>
-              <li>Tracked flash ad Campaigns using Google Analytics.</li>
-              <li>Revamped an existing Classic ASP calendar application</li>
-            </ul>
-          </div>
-          <div className="job__item">
-            <h2>ZEROFRACTAL</h2>
-            <h3>Web Developer</h3>
-            <h4>OCT 2010 - JAN 2011</h4>
-            <ul>
-              <li>Built a Codeigniter website with the use of CSS3 animation, WebKit acceleration, AJAX, jQuery, and Google Maps API.</li>
-              <li>Worked as part of a team who built a fully working Flash AS3 and PHP5 website in 2 days.</li>
-              <li>Built a mobile website for a using CSS3 and jQuery Mobile</li>
-            </ul>
-          </div>
-          <div className="job__item">
-            <h2>SAPIENTNITRO</h2>
-            <h3>Flash Developer</h3>
-            <h4>MAY 2010 - AUG 2010</h4>
-            <ul>
-              <li>Worked on Flash ads for companies like Sprint, M&M, and GM.</li>
-              <li>Worked on email campaigns with for various P&G projects</li>
-            </ul>
-          </div>
-          <div className="job__item">
-            <h2>EXPOBYTES</h2>
-            <h3>E-commerce Developer</h3>
-            <h4>MAY 2008 - APR 2010</h4>
-            <ul>
-              <li>Built a Codeigniter client point system which allowed clients to turn in vendor sales in exchange for reward points.</li>
-              <li>Built a Codeigniter shipping system that estimated the amount of shipping boxes fit in a container.</li>
-              <li>Built Email Campaigns using Constant Contact.</li>
-              <li>Created Print ad’s used for publications.</li>
-              <li>Built and designed two websites running on the Magento e-commerce platform.</li>
-            </ul>
-          </div>
-          <div className="job__item">
-            <h2>LATIN MISSIONS</h2>
-            <h3>Web Manager</h3>
-            <h4>APR 2007 - APR 2008</h4>
-            <ul>
-              <li>Worked as the main web developer in charge of update website content as well as creating new websites for events and departments.</li>
-            </ul>
-          </div>
+          {content}
         </div>
       </div>
     );
