@@ -13,9 +13,17 @@ class ResumeComponent extends Component {
 
     this.state.jobs = [
       {
+        company: "JP Morgan Chase",
+        position: "Vice President, Software Engineering",
+        timeFrame: "Aug 2019 - Present",
+        achievements: [
+          "Lead a team of 7 Full Stack Developers launching a Java 8 Spring Boot with Angular web components project with more than 11 intgration partners and bleeding edge application of services.",
+        ]
+      },
+      {
         company: "BBVA",
         position: "Vice President, Creative Technologist",
-        timeFrame: "May 2017 - Present",
+        timeFrame: "May 2017 - Aug 2019",
         achievements: [
           "Led the technical team behind the creation of 6 bank sites within a multiproduct platform called BBVA Experience using both AWS and GCP running on PHP / Javascript and wordpress for CMS to static site generator.",
           "Worked on the creation of a data-driven dashboard utilizing technologies like Vue.js, Smartsheets, and Node.js backend.",
