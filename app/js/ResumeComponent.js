@@ -17,7 +17,9 @@ class ResumeComponent extends Component {
         position: "Vice President, Software Engineering",
         timeFrame: "Aug 2019 - Present",
         achievements: [
-          "Lead a team of 7 Full Stack Developers launching a Java 8 Spring Boot with Angular web components project with more than 11 intgration partners and bleeding edge application of services.",
+          "Led a team of 25 multinational Full Stack Developers launching a Java 8 Spring Boot with Angular Micro Front End applications with more than 11 integration partners.",
+          "Architected and Delivered multiple features on the JPM Chase client onboarding system.",
+          "Created a central regulatory system which recorded and interacted with many systems while applying multiple complex and dynamic business flows."
         ]
       },
       {

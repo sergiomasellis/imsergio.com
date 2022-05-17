@@ -2,26 +2,25 @@
   "name": "im-sergio",
   "version": "1.0.0",
   "description": "Portfolio Website",
-  "main": "app/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel app/index.html",
-    "build": "yarn install && parcel build app/index.html"
+    "build": "npm install && parcel build app/index.html"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "reactjs": "^1.0.0"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10",
-    "node-sass": "^4.14.1",
-    "parcel": "^1.12.4"
+    "cssnano": "^5.0.11",
+    "node-sass": "^6.0.1",
+    "parcel": "^2.0.1"
   }
 }
