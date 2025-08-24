@@ -1,7 +1,7 @@
 import '../scss/main.scss';
 
-import React, { Component } from 'react'
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import HomeComponent from "./HomeComponent";
 import CursorAnimation from "./CursorAnimation";
@@ -92,30 +92,34 @@ class SiteContainer extends Component {
                 points: 18.00,
                 maxDistance: 12.00,
                 spacing: 11.00
-            }) 
+            })
         } catch (error) {
             console.error(error);
         }
 
+        // Wait for Vanta to create the canvas element
+        setTimeout(() => {
+            const node = this.canvasRef.current;
+            if (node) {
+                // define dom Elements
+                this.state.canvas = node.getElementsByClassName('vanta-canvas')[0];
 
-        const node = ReactDOM.findDOMNode(this);
+                if (this.state.canvas) {
+                    this.state.context = this.state.canvas.getContext('2d');
+                    this.state.target = window;
 
-        // define dom Elements
-        this.state.canvas = node.getElementsByClassName('vanta-canvas')[0];
+                    // Mouse related properties
+                    this.state.mouse = {x: this.state.canvas.width/2, y: this.state.canvas.height/2};
 
-        this.state.context = this.state.canvas.getContext('2d');
-        this.state.target = window;
+                    // Don't Show Cursor
+                    this.state.showCursor = false;
 
-        // Mouse related properties
-        this.state.mouse = {x: this.state.canvas.width/2, y: this.state.canvas.height/2};
-
-        // Don't Show Cursor
-        this.state.showCursor = false;
-
-
-        // Init
-        this.init();
-        this.events();
+                    // Init
+                    this.init();
+                    this.events();
+                }
+            }
+        }, 100);
     }
 
     componentWillUnmount() {
@@ -164,10 +168,6 @@ class SiteContainer extends Component {
     }
 
     deviceRotated(event) {
-
-        var maxX = this.state.canvas.clientWidth  - this.homeRef.current.clientWidth;
-        var maxY = this.state.canvas.clientHeight - this.homeRef.current.clientHeight;
-
         var x = event.beta;  // In degree in the range [-180,180]
         var y = event.gamma; // In degree in the range [-90,90]
 
@@ -176,7 +176,7 @@ class SiteContainer extends Component {
         if (x >  90) { x =  90};
         if (x < -90) { x = -90};
 
-        // To make computation easier we shift the range of 
+        // To make computation easier we shift the range of
         // x and y to [0,180]
         x += 90;
         y += 90;
@@ -240,5 +240,6 @@ class SiteContainer extends Component {
     }
 }
 
-let App = document.getElementById("app");
-ReactDOM.render(<SiteContainer />, App);
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<SiteContainer />);

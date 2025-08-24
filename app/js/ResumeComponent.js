@@ -13,24 +13,28 @@ class ResumeComponent extends Component {
 
     this.state.jobs = [
       {
-        company: "JP Morgan Chase",
-        position: "Vice President, Software Engineering",
+        company: "JPMorgan Chase & Co.",
+        position: "Vice President, AI-Driven Innovation & Cloud Architecture",
         timeFrame: "Aug 2019 - Present",
         achievements: [
-          "Led a team of 25 multinational Full Stack Developers launching a Java 8 Spring Boot with Angular Micro Front End applications with more than 11 integration partners.",
-          "Architected and Delivered multiple features on the JPM Chase client onboarding system.",
-          "Created a central regulatory system which recorded and interacted with many systems while applying multiple complex and dynamic business flows."
+          "Leading AI-driven innovation initiatives, implementing cutting-edge machine learning solutions and cloud-native architectures at enterprise scale.",
+          "Architected and deployed AI-powered systems using LangGraph, VeRL, and advanced RAG (Retrieval-Augmented Generation) implementations.",
+          "Directed global teams in developing cloud-native solutions on AWS and Azure, focusing on scalable AI infrastructure and MLOps pipelines.",
+          "Spearheaded the integration of AI services with authentication and payment systems, enabling seamless AI-powered user experiences.",
+          "Established AI governance frameworks and best practices for responsible AI development and deployment across the organization.",
+          "Collaborated with cross-functional teams to implement AI solutions that drive business value and enhance customer experiences."
         ]
       },
       {
         company: "BBVA",
-        position: "Vice President, Creative Technologist",
+        position: "Vice President, Creative Technologist & Design Systems",
         timeFrame: "May 2017 - Aug 2019",
         achievements: [
-          "Led the technical team behind the creation of 6 bank sites within a multiproduct platform called BBVA Experience using both AWS and GCP running on PHP / Javascript and wordpress for CMS to static site generator.",
-          "Worked on the creation of a data-driven dashboard utilizing technologies like Vue.js, Smartsheets, and Node.js backend.",
-          "Created a brand portal hub to store, organize, document, and distribute BBVA assets.",
-          "Created a Javascript library based on the global design system with reusable web components"
+          "Led technical innovation for BBVA Experience platform, architecting 6 bank sites using AWS and GCP with modern PHP/JavaScript stacks.",
+          "Developed data-driven dashboards and analytics platforms using Vue.js, Node.js, and cloud-native architectures.",
+          "Established enterprise design system with reusable web components and comprehensive documentation platform.",
+          "Implemented CI/CD pipelines and automated deployment strategies for multi-cloud environments.",
+          "Mentored and grew development teams, fostering innovation in fintech solutions and user experience design."
         ]
       },
       {
