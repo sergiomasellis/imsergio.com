@@ -63,6 +63,8 @@ typings/
 dist
 .cache
 .parcel-cache
+.parcel-cache/data.mdb
+.parcel-cache/lock.mdb
 .vscode
 .idea
 *.tsbuildinfo
